@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styles from './index.less'
-// import Swiper from "swiper";
+import Swiper from "swiper";
 import { Form, Input, Row, Col, Button, Icon, message } from 'antd';
 import cookie from 'react-cookies'
 import fetch from 'dva/fetch';
@@ -9,9 +9,9 @@ import './index.less';
 import api from "../../command/api";
 import { routerRedux } from 'dva/router';
 import createDva from "../../command/createDva";
-// import androidImg from '../../images/welcom/PQKJ.png'
-// import IOSimg from '../../images/LoginNew/ios.png'
-// import printImg from '../../images/LoginNew/ic_down.png'
+import androidImg from '../../images/welcom/PQKJ.png'
+import IOSimg from '../../images/LoginNew/ios.png'
+import printImg from '../../images/LoginNew/ic_down.png'
 // import { callbackify } from 'util';
 const FormItem = Form.Item;
 const params = (params) => {
@@ -39,27 +39,27 @@ class LoginNew extends Component {
 
         ];
         this.uploadList = [
-            // { txt: '打印程序驱动', img_src: printImg, aUrl: 'https://pan.baidu.com/s/1TEigJIkvUgVkgs51moPbtg' },
-            // { txt: '台办驱动', img_src: printImg, aUrl: 'https://pan.baidu.com/s/1fPkDRleG7D9wqRNKuKT_sg' },
-            // { txt: '汉印驱动', img_src: printImg, aUrl: 'https://pan.baidu.com/s/1Z303Fp13zfLZKYVCgTHqsQ' },
-            // { txt: 'XT300热敏方式打印设置', img_src: printImg, aUrl: 'https://pan.baidu.com/s/11YFLC850pTKib_1Y6AN4Ew' },
-            // { txt: '汉印打印机参数设置', img_src: printImg, aUrl: 'https://pan.baidu.com/s/10j_tWzj69N9AURHvS4FtIw' },
+            { txt: '打印程序驱动', img_src: printImg, aUrl: 'https://pan.baidu.com/s/1TEigJIkvUgVkgs51moPbtg' },
+            { txt: '台办驱动', img_src: printImg, aUrl: 'https://pan.baidu.com/s/1fPkDRleG7D9wqRNKuKT_sg' },
+            { txt: '汉印驱动', img_src: printImg, aUrl: 'https://pan.baidu.com/s/1Z303Fp13zfLZKYVCgTHqsQ' },
+            { txt: 'XT300热敏方式打印设置', img_src: printImg, aUrl: 'https://pan.baidu.com/s/11YFLC850pTKib_1Y6AN4Ew' },
+            { txt: '汉印打印机参数设置', img_src: printImg, aUrl: 'https://pan.baidu.com/s/10j_tWzj69N9AURHvS4FtIw' },
 
         ]
     }
 
     componentDidMount() {
-        // let swiper = new Swiper('.swiper-container', {
-        //     autoHeight: true,
-        //     loop: true,
-        //     centeredSlides: true,
-        //     loading: false,
-        //     autoplay: {
-        //         delay: 3000
-        //     }
-        // });
-        // console.log('swiper----------------', swiper)
-        // swiper.autoplay.start()
+        let swiper = new Swiper('.swiper-container', {
+            autoHeight: true,
+            loop: true,
+            centeredSlides: true,
+            loading: false,
+            autoplay: {
+                delay: 3000
+            }
+        });
+        console.log('swiper----------------', swiper)
+        swiper.autoplay.start()
         let token = cookie.load('token');
 
         if (token) {
@@ -498,9 +498,9 @@ class LoginNew extends Component {
 
     renderBodyLeft = () => {
         const data = [
-            // require('../../images/LoginNew/banner1.png'),
-            // require('../../images/LoginNew/banner2.png'),
-            // require('../../images/LoginNew/banner3.png')
+            require('../../images/LoginNew/banner1.png'),
+            require('../../images/LoginNew/banner2.png'),
+            require('../../images/LoginNew/banner3.png')
         ]
         const text = ['客服服务：0574-55841200', '技术服务：0574-55843501']
         // const text = ['技术服务：0574-55843501']
