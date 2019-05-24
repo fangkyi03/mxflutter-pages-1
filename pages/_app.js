@@ -5,7 +5,7 @@
  */
 import App, { Container } from 'next/app'
 import React from 'react'
-import withDva from '../utils/store';
+// import withDva from '../utils/store';
 
 // @withDva()
 export default class AppComponent extends App {
