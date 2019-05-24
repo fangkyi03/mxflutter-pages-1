@@ -60,7 +60,7 @@ class LoginNew extends Component {
         //console.log()
         return (
             <div className={'login-btn'} style={{ width: '100%' }}>
-                <Button
+                {/* <Button
                     size={'large'}
                     type={'primary'}
                     onClick={this.state.isPhone ? this.onPhoneLogin : this.onLogin}
@@ -69,13 +69,13 @@ class LoginNew extends Component {
                     loading={this.state.loading}
                 >
                     登录
-            </Button>
+            </Button> */}
             </div>
         )
     }
 
     renderForm = () => {//渲染账号登录
-        const { getFieldDecorator } = this.props.form;
+        // const { getFieldDecorator } = this.props.form;
         return null
         // return (
             // <Form onSubmit={this.onLogin} style={{ width: '100%' }}>
