@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import styles from './index.less'
-import Swiper from "swiper";
+// import Swiper from "swiper";
 import { Form, Input, Row, Col, Button, Icon, message } from 'antd';
-import cookie from 'react-cookies'
+// import cookie from 'react-cookies'
 import fetch from 'dva/fetch';
 import './index.less';
 // import { domain, domainLogin } from "../../env"
 import api from "../../command/api";
-import { routerRedux } from 'dva/router';
+// import { routerRedux } from 'dva/router';
 import createDva from "../../command/createDva";
-import androidImg from '../../images/welcom/PQKJ.png'
-import IOSimg from '../../images/LoginNew/ios.png'
-import printImg from '../../images/LoginNew/ic_down.png'
+// import androidImg from '../../images/welcom/PQKJ.png'
+// import IOSimg from '../../images/LoginNew/ios.png'
+// import printImg from '../../images/LoginNew/ic_down.png'
 // import { callbackify } from 'util';
 const FormItem = Form.Item;
 const params = (params) => {
@@ -48,39 +48,40 @@ class LoginNew extends Component {
         ]
     }
 
+
     componentDidMount() {
-        let swiper = new Swiper('.swiper-container', {
-            autoHeight: true,
-            loop: true,
-            centeredSlides: true,
-            loading: false,
-            autoplay: {
-                delay: 3000
-            }
-        });
-        console.log('swiper----------------', swiper)
-        swiper.autoplay.start()
-        let token = cookie.load('token');
+        // let swiper = new Swiper('.swiper-container', {
+        //     autoHeight: true,
+        //     loop: true,
+        //     centeredSlides: true,
+        //     loading: false,
+        //     autoplay: {
+        //         delay: 3000
+        //     }
+        // });
+        // console.log('swiper----------------', swiper)
+        // swiper.autoplay.start()
+        let token = '';
 
         if (token) {
-            api.send(this, [
-                api.UumUserController_ADMIN("loginNew").infoUsingPOST({})({
-                    onCallBack: res => {
-                        //   if (res.data.uumUser.mobile === '17833334444') {
-                        //     //this.props.dispatch(routerRedux.replace('/NewMain'))
-                        //   }else {
-                        //    // this.props.dispatch(routerRedux.replace('/indexHome'))
-                        //   }
-                        //  this.props.dispatch(routerRedux.replace('/yellowPage'))
-                        //this.getLocationName()
-                        let url = this.getLocationName();
-                        // console.log(url)
-                        //  window.location.href =  url;
-                    },
-                    onError: () => {
-                    }
-                })
-            ]);
+            // api.send(this, [
+            //     api.UumUserController_ADMIN("loginNew").infoUsingPOST({})({
+            //         onCallBack: res => {
+            //             //   if (res.data.uumUser.mobile === '17833334444') {
+            //             //     //this.props.dispatch(routerRedux.replace('/NewMain'))
+            //             //   }else {
+            //             //    // this.props.dispatch(routerRedux.replace('/indexHome'))
+            //             //   }
+            //             //  this.props.dispatch(routerRedux.replace('/yellowPage'))
+            //             //this.getLocationName()
+            //             let url = this.getLocationName();
+            //             // console.log(url)
+            //             //  window.location.href =  url;
+            //         },
+            //         onError: () => {
+            //         }
+            //     })
+            // ]);
         }
     }
 

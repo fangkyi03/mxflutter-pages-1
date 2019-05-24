@@ -3,18 +3,21 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node ./server.js",
-    "build": "next build",
+    "build": "BUNDLE_ANALYZE=server next build",
     "start": "cross-env NODE_ENV=production node ./server.js",
     "export": "npm run build && next export"
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@zeit/next-bundle-analyzer": "^0.1.2",
     "antd": "^3.16.3",
     "babel-plugin-import": "^1.7.0",
     "dva": "^2.3.0",
     "dvajs": "^0.1.8",
     "fastify": "2.1.0",
     "next": "latest",
+    "next-progressbar": "^1.0.0",
+    "next-size": "^2.0.2",
     "react": "^16.8.4",
     "react-cookies": "^0.1.0",
     "react-dom": "^16.8.4",
