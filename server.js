@@ -1,3 +1,4 @@
+// require('next-inferno/alias')()
 const fastify = require('fastify')({ logger: { level: 'error' } })
 const Next = require('next')
 
@@ -50,3 +51,4 @@ fastify.listen(port, err => {
   if (err) throw err
   console.log(`> Ready on http://localhost:${port}`)
 })
+

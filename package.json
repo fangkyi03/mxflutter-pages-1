@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node ./server.js",
-    "build": "BUNDLE_ANALYZE=true next build",
+    "build": "BUNDLE_ANALYZE=brower next build",
     "start": "cross-env NODE_ENV=production node ./server.js",
     "export": "npm run build && next export"
   },
@@ -17,7 +17,13 @@
     "dva-no-router": "^1.2.1",
     "dvajs": "^0.1.8",
     "fastify": "2.1.0",
+    "inferno": "^7.1.12",
+    "inferno-clone-vnode": "^7.1.12",
+    "inferno-compat": "^7.1.12",
+    "inferno-create-class": "^7.1.12",
+    "inferno-create-element": "^7.1.12",
     "next": "latest",
+    "next-inferno": "^0.1.0",
     "next-progressbar": "^1.0.0",
     "next-size": "^2.0.2",
     "react": "^16.8.4",
