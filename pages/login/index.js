@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from './index.less'
 // import Swiper from "swiper";
-// import { Form} from 'antd';
+// import { Button} from 'antd';
 // import cookie from 'react-cookies'
 // import fetch from 'dva/fetch';
 import './index.less';
@@ -59,72 +59,53 @@ class LoginNew extends Component {
     renderbtn = () => {
         //console.log()
         return (
-            <div className={'login-btn'} style={{ width: '100%' }}>
-                {/* <Button
-                    size={'large'}
-                    type={'primary'}
-                    onClick={this.state.isPhone ? this.onPhoneLogin : this.onLogin}
-                    style={{ width: '100%', backgroundColor: '#3FBA2C', borderRadius: 0, border: 'none' }}
-                    // htmlType={'submit'}
-                    loading={this.state.loading}
-                >
-                    登录
-            </Button> */}
-            </div>
+            <button
+                size={'large'}
+                type={'primary'}
+                // onClick={this.state.isPhone ? this.onPhoneLogin : this.onLogin}
+                style={{ width: '100%', backgroundColor: '#3FBA2C', borderRadius: 0, border: 'none' }}
+                // htmlType={'submit'}
+                // loading={this.state.loading}
+            >
+                登录
+            </button>
         )
     }
 
     renderForm = () => {//渲染账号登录
         // const { getFieldDecorator } = this.props.form;
-        return null
-        // return (
-            // <Form onSubmit={this.onLogin} style={{ width: '100%' }}>
-            //     <div
-            //         className={'formItemNew'}
+        return (
+            <form onSubmit={this.onLogin} style={{ width: '100%' }}>
+                <div
+                    className={'formItemNew'}
 
-            //         style={{
-            //             marginTop: 38,
-            //             lineHeight: '24px',
-            //             color: '#3A3939',
-            //             fontFamily: 'MicrosoftYaHei',
-            //             fontWeight: 400,
-            //             fontSize: 14
-            //         }}
-            //     >
-            //         <span>账号</span>
-            //         <FormItem style={{ marginBottom: 12 }} key={1}>
-            //             {getFieldDecorator('username', {
-            //                 // initialValue: 'admin1',
-            //                 rules: [
-            //                     { required: true, message: '请输入账号' },
-            //                 ]
-            //             })(<Input
-            //                 // prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-            //                 size="default"
-            //                 className={'inputBottom'}
-            //                 style={{ border: 'none', borderBottom: '1px solid #E5E5E5', borderRadius: 0, }}
-            //                 placeholder={'请输入您的账号'} />)}
-            //         </FormItem>
-            //         <span   >输入密码</span>
-            //         <FormItem   >
-            //             {getFieldDecorator('password', {
-            //                 // initialValue: '123456',
-            //                 rules: [
-            //                     { required: true, message: '请输入密码' }
-            //                 ]
-            //             })(
-            //                 <Input
-            //                     // prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
-            //                     className={'inputBottom'}
-            //                     onPressEnter={this.onLogin}
-            //                     size="default" placeholder={'请输入密码'}
-            //                     style={{ border: 'none', borderBottom: '1px solid #E5E5E5', borderRadius: 0 }}
-            //                     type={'password'} />
-            //             )}
-            //         </FormItem>
-            //     </div>
-            // </Form>
-        // )
+                    style={{
+                        marginTop: 38,
+                        lineHeight: '24px',
+                        color: '#3A3939',
+                        fontFamily: 'MicrosoftYaHei',
+                        fontWeight: 400,
+                        fontSize: 14
+                    }}
+                >
+                    <span>账号</span>
+                    <input
+                        // prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                        size="default"
+                        className={'inputBottom'}
+                        style={{ border: 'none', borderBottom: '1px solid #E5E5E5', borderRadius: 0, }}
+                        placeholder={'请输入您的账号'} />
+                    <span   >输入密码</span>
+                    <input
+                        // prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                        className={'inputBottom'}
+                        onPressEnter={this.onLogin}
+                        size="default" placeholder={'请输入密码'}
+                        style={{ border: 'none', borderBottom: '1px solid #E5E5E5', borderRadius: 0 }}
+                        type={'password'} />
+                </div>
+            </form>
+        )
     }
 
 
