@@ -63,24 +63,24 @@ class LoginNew extends Component {
         let token = cookie.load('token');
 
         if (token) {
-            api.send(this, [
-                api.UumUserController_ADMIN("loginNew").infoUsingPOST({})({
-                    onCallBack: res => {
-                        //   if (res.data.uumUser.mobile === '17833334444') {
-                        //     //this.props.dispatch(routerRedux.replace('/NewMain'))
-                        //   }else {
-                        //    // this.props.dispatch(routerRedux.replace('/indexHome'))
-                        //   }
-                        //  this.props.dispatch(routerRedux.replace('/yellowPage'))
-                        //this.getLocationName()
-                        let url = this.getLocationName();
-                        // console.log(url)
-                        //  window.location.href =  url;
-                    },
-                    onError: () => {
-                    }
-                })
-            ]);
+            // api.send(this, [
+            //     api.UumUserController_ADMIN("loginNew").infoUsingPOST({})({
+            //         onCallBack: res => {
+            //             //   if (res.data.uumUser.mobile === '17833334444') {
+            //             //     //this.props.dispatch(routerRedux.replace('/NewMain'))
+            //             //   }else {
+            //             //    // this.props.dispatch(routerRedux.replace('/indexHome'))
+            //             //   }
+            //             //  this.props.dispatch(routerRedux.replace('/yellowPage'))
+            //             //this.getLocationName()
+            //             let url = this.getLocationName();
+            //             // console.log(url)
+            //             //  window.location.href =  url;
+            //         },
+            //         onError: () => {
+            //         }
+            //     })
+            // ]);
         }
     }
 
@@ -154,23 +154,23 @@ class LoginNew extends Component {
                     type: 1,
                     scope: 'server'
                 }
-                api.send(this, [
-                    {
-                        url: "/auth/oauth/token",
-                        method: "Login",
-                        params: vals,
-                    },
-                    api.UumUserController_ADMIN('userinfo').infoUsingPOST()({
-                        tranData: ({ data }) => {
-                            return { uumUser: data.uumUser, loginType: 1 }
-                        },
-                        onCallBack: ({ retData }) => {
-                            window.localStorage.setItem('deptId',`${retData.uumUser.deptId}` )
-                            this.getLocationName();
-                            // cookie.save('loginType', '1', { domain: domain })
-                        }
-                    })
-                ]);
+                // api.send(this, [
+                //     {
+                //         url: "/auth/oauth/token",
+                //         method: "Login",
+                //         params: vals,
+                //     },
+                //     api.UumUserController_ADMIN('userinfo').infoUsingPOST()({
+                //         tranData: ({ data }) => {
+                //             return { uumUser: data.uumUser, loginType: 1 }
+                //         },
+                //         onCallBack: ({ retData }) => {
+                //             window.localStorage.setItem('deptId',`${retData.uumUser.deptId}` )
+                //             this.getLocationName();
+                //             // cookie.save('loginType', '1', { domain: domain })
+                //         }
+                //     })
+                // ]);
             }
         });
     }
@@ -196,30 +196,30 @@ class LoginNew extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, val) => {
             if (!err) {
-                api.send(this, [
-                    {
-                        url: "/api/auth/mobile/token",
-                        method: "LoginMobile",
-                        params: {
-                            mobile: val.username,
-                            code: val.phone,
-                            randomStr: new Date().getTime().toString(),
-                            grant_type: 'mobile',
-                            type: '0',
-                            scopt: 'server'
-                        },
-                    },
-                    api.UumUserController_ADMIN('userinfo').infoUsingPOST()({
-                        tranData: ({ data }) => {
-                            return { uumUser: data.uumUser, loginType: 1 }
-                        },
-                        onCallBack: ({ retData }) => {
-                            console.log('输出userinfo', retData)
-                            this.getLocationName();
-                            cookie.save('loginType', '1', { domain: domain })
-                        }
-                    })
-                ]);
+                // api.send(this, [
+                //     {
+                //         url: "/api/auth/mobile/token",
+                //         method: "LoginMobile",
+                //         params: {
+                //             mobile: val.username,
+                //             code: val.phone,
+                //             randomStr: new Date().getTime().toString(),
+                //             grant_type: 'mobile',
+                //             type: '0',
+                //             scopt: 'server'
+                //         },
+                //     },
+                //     api.UumUserController_ADMIN('userinfo').infoUsingPOST()({
+                //         tranData: ({ data }) => {
+                //             return { uumUser: data.uumUser, loginType: 1 }
+                //         },
+                //         onCallBack: ({ retData }) => {
+                //             console.log('输出userinfo', retData)
+                //             this.getLocationName();
+                //             cookie.save('loginType', '1', { domain: domain })
+                //         }
+                //     })
+                // ]);
                 // this.props.dispatch({
                 //     type: 'fetch/send', payload: [
                 //         {
