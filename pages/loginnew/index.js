@@ -142,7 +142,7 @@ class LoginNew extends Component {
         return true
     }
     onLogin = (e) => {
-
+        window.location.href = '/welcomThisWay'
         e.preventDefault();
         this.props.form.validateFields((err, val) => {
             if (!err) {

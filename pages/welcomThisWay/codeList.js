@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import createDva from '../../command/createDva';
+import React, { Component } from './node_modules/reateDva from 
+import createDva from '../../com./node_modules/t {domainApp} from "@/env";
 import { Button,Row,Col } from 'antd';
 // import {domainApp} from "@/env";
 import api from "../../command/api";

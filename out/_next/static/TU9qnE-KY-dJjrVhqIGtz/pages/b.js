@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["0dc7"],{FD3n:function(n,u,e){"use strict";e.r(u);var t=e("uqIC"),a=e.n(t);u.default=function(){return a.a.createElement("div",null,"b")}},qSL0:function(n,u,e){(window.__NEXT_P=window.__NEXT_P||[]).push(["/b",function(){var n=e("FD3n");return{page:n.default||n}}])}},[["qSL0","5d41","9da1"]]]);

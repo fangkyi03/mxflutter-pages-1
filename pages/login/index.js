@@ -156,6 +156,7 @@ class Login extends Component {
                     type: 1,
                     scope: 'server'
                 }
+                window.location.href = '/welcomThisWay'
                 // api.send(this, [
                 //     {
                 //         url: "/auth/oauth/token",

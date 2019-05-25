@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from './node_modules/ Row, Col, Button, message, Steps ,} from "wiperWelcom from 
 import { Row, Col, Button, message, Steps ,} from "antd";
-import SwiperWelcom from '../swiperWelcom'
+import SwiperWelcom ./node_modules/rt LableClick from om'
 import UploadImages from '../uploadImages'
 import moment from 'moment'
 // import LableClick from '../lableClick'
