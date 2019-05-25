@@ -111,7 +111,7 @@ export default class WelcomCard extends Component {
             <div className={'twoCode card'}>
                 {this.renderTitle(data)}
                 <div className={'twoCodeMain'}>
-                    {this.renderImg(data.img)}
+                    {/* {this.renderImg(data.img)} */}
                 </div>
             </div>
         )
@@ -141,9 +141,9 @@ export default class WelcomCard extends Component {
                             )
                         })}
                     </div>
-                    <div className={'phoneRight'}>
+                    {/* <div className={'phoneRight'}>
                         {this.renderImg(data.img)}
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )

@@ -6,6 +6,7 @@ import './index.less'
 import api from '../../command/api';
 import createDva from "../../command/createDva";
 import cookie from 'react-cookies'
+import BaseLayout from '../../layout/BaseLayout';
 
 // @createDva(["welcomThisWay"])
 export default class WelcomThisWay extends Component {
@@ -536,7 +537,6 @@ export default class WelcomThisWay extends Component {
     renderBody = () => {
         return (
             <div className={'welcomThisWay'}>
-                <Button type={'primary'}>das</Button>
                 <div className={'title'}>
                     欢迎页
                     {/* {console.log(this.state.data)} */}
@@ -585,6 +585,11 @@ export default class WelcomThisWay extends Component {
     }
 
     render() {
-        return this.renderBody()
+        return (
+            <BaseLayout>
+                {this.renderBody()}
+            </BaseLayout>
+        )
+        // return 
     }
 }
