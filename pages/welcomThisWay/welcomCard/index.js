@@ -1,6 +1,6 @@
-import React, { Component } from './node_modules/ Row, Col, Button, message, Steps ,} from "wiperWelcom from 
-import { Row, Col, Button, message, Steps ,} from "antd";
-import SwiperWelcom ./node_modules/rt LableClick from om'
+import React, { Component } from 'react'
+import { Row, Col, Button, message, Steps, } from "antd";
+import SwiperWelcom from '../swiperWelcom'
 import UploadImages from '../uploadImages'
 import moment from 'moment'
 // import LableClick from '../lableClick'
@@ -48,18 +48,18 @@ export default class WelcomCard extends Component {
     renderTitle = (data) => {//渲染公用卡头
         return (
             <div className='commonTitle'>
-                {data.icon ? <img 
-                                style = {{
-                                        width:'24px',
-                                        height:'24px',
-                                        marginRight:'5px',
-                                        position: 'relative',
-                                        top: '-2px'
-                                        }} 
-                                src = {data.icon} 
-                                alt = {data.bigTitle} 
-                            /> : null}
-                    
+                {data.icon ? <img
+                    style={{
+                        width: '24px',
+                        height: '24px',
+                        marginRight: '5px',
+                        position: 'relative',
+                        top: '-2px'
+                    }}
+                    src={data.icon}
+                    alt={data.bigTitle}
+                /> : null}
+
                 {data.bigTitle}
                 <span>{data.smallTitle}</span>
             </div>
@@ -79,7 +79,7 @@ export default class WelcomCard extends Component {
                                         {item.title}
                                     </div>
                                     <div className='right'>
-                                        <img style = {{width:'60px'}} src={item.icon} alt={item.title} />
+                                        <img style={{ width: '60px' }} src={item.icon} alt={item.title} />
                                     </div>
                                 </a>
                             )
@@ -210,8 +210,8 @@ export default class WelcomCard extends Component {
     }
 
 
-    renderHelp = (data, classNamed) => { 
-        const current = this.state.Steps 
+    renderHelp = (data, classNamed) => {
+        const current = this.state.Steps
         // console.log('---data[current].introduce[0].img--',data[current].introduce[0].img)
         return (
             <div className='imageData' style={{ margin: '15px 0' }}>
@@ -232,7 +232,7 @@ export default class WelcomCard extends Component {
                                 data[current].introduce.map((item, index) => {
                                     return (
                                         <div key={index} className={'contentLeftMain'}>
-                                        {/* {console.log('item',item)} */}
+                                            {/* {console.log('item',item)} */}
                                             {item.title ? this.renderItemTitle(item.title) : null}
                                             {item.explain.map((item, index) => {
                                                 return (
@@ -255,14 +255,14 @@ export default class WelcomCard extends Component {
                                 })
                             }
                         </div>
-                        <div className='contentRight'>  
+                        <div className='contentRight'>
                             {
                                 data[current].introduce[0].img ? <SwiperWelcom
-                                                                    data={data[current].introduce[0].img}
-                                                                    name={classNamed}
-                                                                ></SwiperWelcom> :null
-                            }  
-                            <span style = {{color:'red'}}>(滑动图片可查看下一张图片)</span>
+                                    data={data[current].introduce[0].img}
+                                    name={classNamed}
+                                ></SwiperWelcom> : null
+                            }
+                            <span style={{ color: 'red' }}>(滑动图片可查看下一张图片)</span>
                         </div>
                     </div>
 
@@ -272,13 +272,13 @@ export default class WelcomCard extends Component {
         )
     }
 
-    isOver = (id,step) => {//判断是否已完成
-        if( (!id && step == 3) || id && step == 5){
+    isOver = (id, step) => {//判断是否已完成
+        if ((!id && step == 3) || id && step == 5) {
             return true
         }
         return false
     }
-    
+
 
     showHelp = (item, index) => {
         const selectIndex = this.state.selectArr[index]
@@ -290,10 +290,10 @@ export default class WelcomCard extends Component {
                 <div style={{ flexDirection: 'column-reverse', display: 'flex', flex: 1 }}>
                     <div className='button'>
                         <Button type="primary" onClick={() => this.backPage(index, item)}>上一步</Button>
-                        <Button onClick={!this.isOver(item.id,this.state.Steps) ? () => this.goPage(index, item) : () => this.getHelp(item)}>
+                        <Button onClick={!this.isOver(item.id, this.state.Steps) ? () => this.goPage(index, item) : () => this.getHelp(item)}>
                             {/* {console.log('item',item)} */}
-                            {this.isOver(item.id,this.state.Steps) ? '完成' : '下一步'}
-                            
+                            {this.isOver(item.id, this.state.Steps) ? '完成' : '下一步'}
+
                         </Button>
                     </div>
                     {this.renderHelp(item.data, item.classNamed)}
@@ -306,7 +306,7 @@ export default class WelcomCard extends Component {
     }
 
     renderImage = (data) => {//渲染指引帮助卡片
-  
+
         return (
             <div className='image'>
                 {this.renderTitle(data)}
@@ -314,11 +314,11 @@ export default class WelcomCard extends Component {
                     {data.img.map((item, index) => {
                         return (
                             <Col span={11} key={index} push={index}>
-                                <div style = {{marginTop:'20px'}}>
-                                    <img 
-                                        className = {'imageImg'} 
-                                        onClick={() => this.getHelp(item, index)} src={item.src} 
-                                        alt={item.title} 
+                                <div style={{ marginTop: '20px' }}>
+                                    <img
+                                        className={'imageImg'}
+                                        onClick={() => this.getHelp(item, index)} src={item.src}
+                                        alt={item.title}
                                     />
                                     <div>{item.title}</div>
                                     {item.select ? this.showHelp(item, index) : null}
@@ -327,7 +327,7 @@ export default class WelcomCard extends Component {
                         )
                     })}
                 </Row>
-              
+
             </div>
         )
     }
@@ -367,13 +367,13 @@ export default class WelcomCard extends Component {
 
     // labelModalClick = () => {this.setState({labelModal:true})}
 
-    addHeadImage = () =>{//上传头像
+    addHeadImage = () => {//上传头像
 
     }
 
-    
 
-    
+
+
 
     renderBody = (item) => {//渲染主体欢迎卡片
         if (item.type) {
@@ -386,20 +386,20 @@ export default class WelcomCard extends Component {
                     {item.title}
                 </div>
                 <div className={'people'}>
-                {/* <div className = {'peopleImg'} style = {{backgroundImage:`url(${imageUrl})`}} onClick = {this.addHeadImage}></div> */}
-                   <div style = {{width:'35px',height:'35px'}}>
+                    {/* <div className = {'peopleImg'} style = {{backgroundImage:`url(${imageUrl})`}} onClick = {this.addHeadImage}></div> */}
+                    <div style={{ width: '35px', height: '35px' }}>
                         <UploadImages
-                            account = {this.props.account}
-                            upImages = {this.props.upImages}
-                            headImage = {this.props.headImage}
+                            account={this.props.account}
+                            upImages={this.props.upImages}
+                            headImage={this.props.headImage}
                         >
 
                         </UploadImages>
-                   </div>
-                    
-                    <div className = {'peopleMain'}>
+                    </div>
+
+                    <div className={'peopleMain'}>
                         <div className={'usr'}>
-                            登录用户：<span style = {{fontSize:'18px',fontWeight: '700'}}>{item.loginUsr}</span>
+                            登录用户：<span style={{ fontSize: '18px', fontWeight: '700' }}>{item.loginUsr}</span>
                         </div>
                         <div className={'loginTime'}>
                             最后登录时间：{moment(this.props.lastLoginTime).format('LLLL')}
@@ -409,7 +409,7 @@ export default class WelcomCard extends Component {
                 {/* <div className = 'label'>
                     <span>{this.renderLabels()}</span><span className = {'labelClick'} onClick = {this.labelModalClick}>打标签</span>
                 </div> */}
-                <div className = {'labelAndType'}>
+                <div className={'labelAndType'}>
                     <LabelFather></LabelFather>
                     <div className={'type'}>
                         <Row>
@@ -424,14 +424,14 @@ export default class WelcomCard extends Component {
                                         <div>{smallItem.title}</div>
                                         <div
                                             className={'isThisType'}
-                                            style={{display:'block'}}
+                                            style={{ display: 'block' }}
                                         >
-                                            <img 
+                                            <img
                                                 src={
-                                                    this.state.isImg[index] ? require(`../../../images/welcom/icon/ic_selected.png`) : 
-                                                                            require(`../../../images/welcom/icon/ic_selected_nor.png`)
-                                                } 
-                                                alt='yes' 
+                                                    this.state.isImg[index] ? require(`../../../images/welcom/icon/ic_selected.png`) :
+                                                        require(`../../../images/welcom/icon/ic_selected_nor.png`)
+                                                }
+                                                alt='yes'
                                             />
                                         </div>
                                     </div>
@@ -440,7 +440,7 @@ export default class WelcomCard extends Component {
                         </Row>
                     </div>
                 </div>
-                
+
             </div>
         )
     }

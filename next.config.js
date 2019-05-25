@@ -23,12 +23,8 @@ const themeVariables = lessToJS(
 if (typeof require !== 'undefined') {
   require.extensions['.less'] = file => { }
 }
-
-module.exports = {...withPlugins([
-  [
-    
-  ]
-  [withBundleAnalyzer,{
+module.exports = withPlugins([
+  [withBundleAnalyzer, {
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
     analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
     bundleAnalyzerConfig: {
@@ -42,8 +38,8 @@ module.exports = {...withPlugins([
       }
     }
   }],
-  [withSize,{}],
-  [withProgressBar,{
+  [withSize, {}],
+  [withProgressBar, {
     progressBar: {
       profile: true
     }
@@ -88,11 +84,12 @@ module.exports = {...withPlugins([
       modifyVars: themeVariables, // make your antd custom effective
       cssModules: true
     }
-  }]
-]),
-  exportPathMap:function(){
-    return {
-      '/loginnew': { page: '/loginnew' }
+  }],
+  // [withInferno,{}],
+],{
+    exportPathMap: function () {
+      return {
+        '/login': { page: '/login' }
+      }
     }
-  }
-}
+})
