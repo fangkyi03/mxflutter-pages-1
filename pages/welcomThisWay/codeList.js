@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from './node_modules/react'
 import createDva from '../../command/createDva';
-import { Button,Row,Col } from 'antd';
+import { Button,Row,Col } from './node_modules/antd';
 // import {domainApp} from "@/env";
 import api from "../../command/api";
 // import GlobalBorder from '../../components/GlobalBorder';

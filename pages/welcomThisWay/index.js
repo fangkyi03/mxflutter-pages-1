@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { Row, Col,Button } from "antd";
+import React, { Component } from './node_modules/react'
+import { Row, Col,Button } from "./node_modules/antd";
 import WelcomCard from './welcomCard'
 import TwoCodeCard from './twoCodeCard'
 import './index.less'
 import api from '../../command/api';
 import createDva from "../../command/createDva";
-import cookie from 'react-cookies'
+import cookie from './node_modules/react-cookies'
 
 // @createDva(["welcomThisWay"])
 export default class WelcomThisWay extends Component {
@@ -501,18 +501,18 @@ export default class WelcomThisWay extends Component {
     }
 
     upImages = (url,uuid) =>{
-        api.send(this,
-            [
-                api.UumUserController_ADMIN('welcomThisWay').updateHeadUsingPOST({uuid:uuid,headPortrait:url})(
+        // api.send(this,
+        //     [
+        //         api.UumUserController_ADMIN('welcomThisWay').updateHeadUsingPOST({uuid:uuid,headPortrait:url})(
                     
-                ),
-                api.UumUserController_ADMIN('userinfo').infoUsingPOST()({
-                    tranData:({data})=>{
-                        return {uumUser:{...data.uumUser,headPortrait:url},loginType:cookie.load('loginType')||0}
-                    },
-                })
-            ]
-        );
+        //         ),
+        //         api.UumUserController_ADMIN('userinfo').infoUsingPOST()({
+        //             tranData:({data})=>{
+        //                 return {uumUser:{...data.uumUser,headPortrait:url},loginType:cookie.load('loginType')||0}
+        //             },
+        //         })
+        //     ]
+        // );
     }
 
     onNotificationDown = () => {

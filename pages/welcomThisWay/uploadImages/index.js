@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { Upload, Icon ,message} from 'antd'
-import cookie from 'react-cookies'
+import React, { Component } from './node_modules/react'
+import { Upload, Icon ,message} from './node_modules/antd'
+import cookie from './node_modules/react-cookies'
 // import { env } from "@/env";
 import api from '../../../command/api';
 

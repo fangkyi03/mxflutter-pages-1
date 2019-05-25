@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Swiper from 'swiper'
+import React, { Component } from './node_modules/react'
+import Swiper from './node_modules/swiper'
 import { relative } from 'path';
 
 export default class SwiperWelcom extends Component {

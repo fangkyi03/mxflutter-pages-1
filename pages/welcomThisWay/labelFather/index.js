@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from './node_modules/react'
 import LableClick from '../lableClick'
 import api from '../../../command/api';
 import createDva from "../../../command/createDva";
