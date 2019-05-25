@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, } from "antd";
+import { Row, Col,Button } from "antd";
 import WelcomCard from './welcomCard'
 import TwoCodeCard from './twoCodeCard'
 import './index.less'
@@ -401,73 +401,73 @@ export default class WelcomThisWay extends Component {
         // }
 
         let data = this.state.data
-        api.send(this, [
-                            api.UumUserController_ADMIN('welcomThisWay').infoUsingPOST()({
-                                tranData: (res) => {
-                                    // data.loginTime = new Date().toLocaleString()
-                                    data.title = res.data.uumUser.deptName + ',欢迎您！'
-                                    data.loginUsr = res.data.uumUser.uname
-                                    if (!(window.localStorage.userFirst && window.localStorage.userFirst.indexOf(`${res.data.uumUser.uuid}`) !== -1)) {
-                                        introJs().setOptions({
-                                            //对应的按钮
-                                            prevLabel: "上一步",
-                                            nextLabel: "下一步",
-                                            skipLabel: "跳过",
-                                            doneLabel: "我知道了",
-                                            exitOnOverlayClick: false,
-                                            showBullets: false,
-                                            showProgress: true,
-                                            overlayOpacity: 1,
-                                            hintPosition: 'top-middle',
-                                            hintButtonLabel: 'Got it',
-                                            disableInteraction: true,
+        // api.send(this, [
+        //                     api.UumUserController_ADMIN('welcomThisWay').infoUsingPOST()({
+        //                         tranData: (res) => {
+        //                             // data.loginTime = new Date().toLocaleString()
+        //                             data.title = res.data.uumUser.deptName + ',欢迎您！'
+        //                             data.loginUsr = res.data.uumUser.uname
+        //                             if (!(window.localStorage.userFirst && window.localStorage.userFirst.indexOf(`${res.data.uumUser.uuid}`) !== -1)) {
+        //                                 introJs().setOptions({
+        //                                     //对应的按钮
+        //                                     prevLabel: "上一步",
+        //                                     nextLabel: "下一步",
+        //                                     skipLabel: "跳过",
+        //                                     doneLabel: "我知道了",
+        //                                     exitOnOverlayClick: false,
+        //                                     showBullets: false,
+        //                                     showProgress: true,
+        //                                     overlayOpacity: 1,
+        //                                     hintPosition: 'top-middle',
+        //                                     hintButtonLabel: 'Got it',
+        //                                     disableInteraction: true,
                             
-                                        }).start();
-                                        window.localStorage.userFirst += `,${res.data.uumUser.uuid}`;
-                                        console.log(window.localStorage.userFirst )
-                                    }
-                                    this.setState({
-                                        data
-                                    })
+        //                                 }).start();
+        //                                 window.localStorage.userFirst += `,${res.data.uumUser.uuid}`;
+        //                                 console.log(window.localStorage.userFirst )
+        //                             }
+        //                             this.setState({
+        //                                 data
+        //                             })
 
-                                    return {uuidNew:res.data.uumUser.uuid,headImage:res.data.uumUser.headPortrait}
-                                }
-                            }),
-                            api.FarmlandController_TRACECOMPANY('welcomThisWay').getBaseListUsingPOST()({
-                                tranData: (res) => {
-                                    console.log('二维码' , res)
+        //                             return {uuidNew:res.data.uumUser.uuid,headImage:res.data.uumUser.headPortrait}
+        //                         }
+        //                     }),
+        //                     api.FarmlandController_TRACECOMPANY('welcomThisWay').getBaseListUsingPOST()({
+        //                         tranData: (res) => {
+        //                             console.log('二维码' , res)
                                     
-                                    this.setState({
-                                        baseTwocode: res.data.map( (item) => {
-                                            return {
-                                                type:1,
-                                                title:item.name,
-                                                codeSrc:item.id,
-                                                downloadUrl:item.id,
-                                            }
-                                        })
-                                    })
-                                }
-                            }),
-                            api.YellowPageController_TRACECOMPANY("welcomThisWay").detailUsingPOST({})({
-                                tranData: res => {
-                                   console.log('res',res)
-                                   this.setState({
-                                        pageTwocode: this.thisPageTwoCode(res)
-                                    })
-                                },
-                                onError: () => {
-                                    console.log("object");
-                                }
-                            }),
-                            api.UumUserController_ADMIN("welcomThisWay").getLastLoginTimeUsingPOST()({
-                                tranData:({data}) => {
-                                    console.log('最后登入时间',data)
-                                    return ({ lastLoginTime: data.lastLoginTime})
-                                }    
-                            }),
-                        ]
-        );
+        //                             this.setState({
+        //                                 baseTwocode: res.data.map( (item) => {
+        //                                     return {
+        //                                         type:1,
+        //                                         title:item.name,
+        //                                         codeSrc:item.id,
+        //                                         downloadUrl:item.id,
+        //                                     }
+        //                                 })
+        //                             })
+        //                         }
+        //                     }),
+        //                     api.YellowPageController_TRACECOMPANY("welcomThisWay").detailUsingPOST({})({
+        //                         tranData: res => {
+        //                            console.log('res',res)
+        //                            this.setState({
+        //                                 pageTwocode: this.thisPageTwoCode(res)
+        //                             })
+        //                         },
+        //                         onError: () => {
+        //                             console.log("object");
+        //                         }
+        //                     }),
+        //                     api.UumUserController_ADMIN("welcomThisWay").getLastLoginTimeUsingPOST()({
+        //                         tranData:({data}) => {
+        //                             console.log('最后登入时间',data)
+        //                             return ({ lastLoginTime: data.lastLoginTime})
+        //                         }    
+        //                     }),
+        //                 ]
+        // );
 
     }
 
@@ -536,6 +536,7 @@ export default class WelcomThisWay extends Component {
     renderBody = () => {
         return (
             <div className={'welcomThisWay'}>
+                <Button type={'primary'}>das</Button>
                 <div className={'title'}>
                     欢迎页
                     {/* {console.log(this.state.data)} */}

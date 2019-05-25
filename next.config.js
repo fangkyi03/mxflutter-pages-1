@@ -7,6 +7,8 @@ const optimizedImages = require('next-optimized-images');
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const withProgressBar = require('next-progressbar')
 const withInferno = require('next-inferno')
+
+const withLessExcludeAntd = require("./next-less.config.js")
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({ enabled: process.env.ANALYZE === "true" });
 const withSize = require('next-size')
 const fs = require('fs')
@@ -23,8 +25,6 @@ if (typeof require !== 'undefined') {
 }
 
 module.exports = withPlugins([
-  [withImage,{}],
-  [withInferno,{}],
   [withBundleAnalyzer,{
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
     analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
@@ -46,9 +46,40 @@ module.exports = withPlugins([
     }
     // rest of your next config
   }],
-  [optimizedImages, {}],
-  [withLess, {
+  [optimizedImages, {
+    // these are the default values so you don't have to provide them if they are good enough for your use-case.
+    // but you can overwrite them here with any valid value you want.
+    inlineImageLimit: 8192,
+    imagesFolder: 'images',
+    imagesName: '[name]-[hash].[ext]',
+    handleImages: ['jpeg', 'png', 'svg', 'webp', 'gif'],
+    optimizeImages: true,
+    optimizeImagesInDev: false,
+    mozjpeg: {
+      quality: 80,
+    },
+    optipng: {
+      optimizationLevel: 3,
+    },
+    pngquant: false,
+    gifsicle: {
+      interlaced: true,
+      optimizationLevel: 3,
+    },
+    svgo: {
+      // enable/disable svgo plugins here
+    },
+    webp: {
+      preset: 'default',
+      quality: 75,
+    },
+  }],
+  [withLessExcludeAntd, {
     cssModules: true,
+    cssLoaderOptions: {
+      importLoaders: 1,
+      localIdentName: "[local]___[hash:base64:5]",
+    },
     lessLoaderOptions: {
       javascriptEnabled: true,
       modifyVars: themeVariables, // make your antd custom effective

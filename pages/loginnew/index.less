@@ -1,0 +1,181 @@
+.main {
+    display: flex;
+    flex:1;
+    height:100%;
+    flex-direction: column;
+    background-image: url('../../images/LoginNew/bg_1.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 5%;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyView {
+    width: 100%;
+    position: relative;
+}
+
+.bodyHeader {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width:100%;
+}
+
+.bodyHeader::before {
+    content: '';
+    background:white;
+    width:8px;
+    height: 35px;
+    line-height: 20px
+}
+
+.bodyHeader::after {
+    content: '宁波市农产品质量安全追溯管理系统';
+    margin-left: 10px;
+    height:20px;
+    font-size:38px;
+    font-family:MicrosoftYaHei;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    line-height: 20px
+}
+
+.body {
+    // height: 500px;
+    margin-top: 21px;
+    background: url('../../images/LoginNew/bg_2.png') 100%;
+    background-size: 100% 100%;
+    position: relative;
+    display: flex;
+    flex:1;
+    overflow: hidden;
+}
+
+.bodyFoot {
+    margin-top: -20px;
+    height: 50px;
+    background: url('../../images/LoginNew/rect.png') 100%;
+    background-size: 100% 100%;
+}
+
+.bodyFootView {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 50px;
+    z-index: 999;
+}
+
+.bodyLeft {
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    overflow: hidden;
+   
+}
+
+.bodyRight {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    input:-internal-autofill-selected{
+        
+        background-color:#fff!important
+    }
+    .input::-webkit-input-placeholder {
+        /* placeholder颜色  */
+        color: #DCDBDB;
+        /* placeholder字体大小  */
+        font-size: 12px;
+        /* placeholder位置  */
+        text-align: right;
+    }
+}
+
+.loginView {
+    width: 372px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginViewHeader{
+    display: flex;
+    height: 50px;
+    width: 200px;
+    padding-top:30px;
+    justify-content: space-around;
+}
+
+.usrLogin{
+    color:#999999;
+    font-size: 18px;
+    font-family:MicrosoftYaHei;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.usrLoginACT{
+    color:#43BB38;
+    font-size: 18px;
+    font-family:MicrosoftYaHei;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+// .loginViewHeader {
+//     display: flex;
+//     height: 50px;
+//     width: 200px;
+//     padding-top:30px;
+//     justify-content: space-between
+// }
+
+// .loginViewHeader::before {
+//     content: '账号登录';
+//     color:#43BB38;
+//     font-size: 18px;
+//     font-family:MicrosoftYaHei;
+//     font-weight: bold;
+// }
+
+// .loginViewHeader::after {
+//     content:'手机号登录';
+//     color: #999999;
+//     font-size: 18px;
+//     font-family:MicrosoftYaHei;
+//     font-weight: bold;
+// }
+
+
+.formItemNew{
+    padding-top: 120px;
+}
+
+.printerDownload{
+   overflow-x: auto;
+}
+
+.printerDownloadBox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    & > div{
+        margin: 2px 0;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+.printerDownloadBox::after{
+    display: block;
+    content: '';
+    clear: both;
+}

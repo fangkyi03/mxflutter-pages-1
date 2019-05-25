@@ -21,30 +21,30 @@ export default class LabelFather extends Component {
 
 
     componentDidMount() {
-        api.send(this, 
-            [
-                // api.MblCompanyLabelsController_UPMSCOMPANY('welcomThisWay').findCompanyLabelUsingPOST()(
-                //     {
-                //         tranData:({data})=>{
-                //             this.setState({
-                //                 newData:data
-                //             })
-                //             // return {newData:data}
-                //         }
-                //     }
-                // ),
-                api.MarkController_ADMIN ('welcomThisWay').getTagUsingPOST()(
-                    {
-                        tranData:({data})=>{
+        // api.send(this, 
+        //     [
+        //         // api.MblCompanyLabelsController_UPMSCOMPANY('welcomThisWay').findCompanyLabelUsingPOST()(
+        //         //     {
+        //         //         tranData:({data})=>{
+        //         //             this.setState({
+        //         //                 newData:data
+        //         //             })
+        //         //             // return {newData:data}
+        //         //         }
+        //         //     }
+        //         // ),
+        //         // api.MarkController_ADMIN ('welcomThisWay').getTagUsingPOST()(
+        //         //     {
+        //         //         tranData:({data})=>{
                             
-                            this.setState({
-                                newData:data
-                            })
-                        }
-                    }
-                )
-            ]
-        );
+        //         //             this.setState({
+        //         //                 newData:data
+        //         //             })
+        //         //         }
+        //         //     }
+        //         // )
+        //     ]
+        // );
     }
 
     renderLabels = () => {

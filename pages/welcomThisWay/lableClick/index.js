@@ -61,22 +61,22 @@ export default class LableClick extends Component {
     } 
 
     componentDidMount() {
-        api.send(this,
-            [
-                api.MarkController_ADMIN('welcomThisWay1').tempTagsUsingPOST()(
-                    {
-                        tranData: ({ data }) => {
-                            return {newData:data}
-                        }
-                    }
-                ),
-                api.MarkController_ADMIN('welcomThisWay1').getTagUsingPOST()({
-                    onCallBack: ({ retData }, ret)=>{
-                        this.setState(this.tranData(retData.data, ret.newData))
-                    }
-                })
-            ]
-        );
+        // api.send(this,
+        //     [
+        //         api.MarkController_ADMIN('welcomThisWay1').tempTagsUsingPOST()(
+        //             {
+        //                 tranData: ({ data }) => {
+        //                     return {newData:data}
+        //                 }
+        //             }
+        //         ),
+        //         api.MarkController_ADMIN('welcomThisWay1').getTagUsingPOST()({
+        //             onCallBack: ({ retData }, ret)=>{
+        //                 this.setState(this.tranData(retData.data, ret.newData))
+        //             }
+        //         })
+        //     ]
+        // );
     }
 
     handleOk = e => {
