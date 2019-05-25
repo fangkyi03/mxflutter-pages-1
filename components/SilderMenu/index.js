@@ -1,9 +1,9 @@
 import './index.less';
 import React, { Component } from 'react';
-import { Layout, Icon, Spin, Transfer } from 'antd';
+import { Layout, Icon, Spin, Transfer,Menu } from 'antd';
 import { withRouter } from 'dva/router';
-import SiderMenu from './renderMenu';
-import LogoNav from './logoNav'
+// import SiderMenu from './renderMenu';
+// import LogoNav from './logoNav'
 import { connect } from 'dva';
 // import {env} from '@/env'
 // import request from '@/utils/request'
@@ -11,15 +11,15 @@ import { connect } from 'dva';
 const { Sider } = Layout;
 
 class SiderCustom extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      openKeys: [],
-      selectedKeys: [],
-      collapsed: false,
-      firstHide: false
-    };
-  }
+  // constructor(props, context) {
+  //   super(props, context);
+  //   this.state = {
+  //     openKeys: [],
+  //     selectedKeys: [],
+  //     collapsed: false,
+  //     firstHide: false
+  //   };
+  // }
   UNSAFE_componentWillMount() {
     const { history } = this.props;
     // history.listen(e => {
@@ -53,28 +53,28 @@ class SiderCustom extends Component {
   }
 
   toggleCollapsed = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-      firstHide: !this.state.collapsed
-    });
+    // this.setState({
+    //   collapsed: !this.state.collapsed,
+    //   firstHide: !this.state.collapsed
+    // });
   };
 
   //渲染菜单头部数据
   renderMenuHeader = () => {
-    const { collapsed } = this.state
-    return (
-      <div>
-        <div className="aside-btn">
-          <a onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
-          {/* 11111111111 */}
-            <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
-          </a>
-        </div>
-        <div className="logo">
-          <LogoNav collapsed={collapsed} />
-        </div>
-      </div>
-    );
+    // const { collapsed } = this.state
+    // return (
+    //   <div>
+    //     <div className="aside-btn">
+    //       <a onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
+    //       {/* 11111111111 */}
+    //         <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
+    //       </a>
+    //     </div>
+    //     <div className="logo">
+    //       <LogoNav collapsed={collapsed} />
+    //     </div>
+    //   </div>
+    // );
   };
 
   onOpenChange = (e) => {
@@ -84,14 +84,18 @@ class SiderCustom extends Component {
     });
   }
 
-  onMenuClick = () =>{
-    this.props.dispatch({type:"clearModel/clearAll"});
+  onMenuClick = (e) => {
+    console.log('输出e',e)
+    // this.props.dispatch({type:"clearModel/clearAll"});
   }
 
   render() {
-    const { menuList, menuLoading, fourMenuList, maxMenu } = this.props;
-    const { collapsed, openKeys, selectedKeys, firstHide } = this.state
-    // console.log(fourMenuList)
+    const data = [
+      {
+        name:'测试',
+        path:''
+      }
+    ]
     return (
       <Sider
         collapsible
@@ -100,23 +104,20 @@ class SiderCustom extends Component {
         width={230}
         theme={'dark'}
         // collapsedWidth={50】
-        collapsed={collapsed}
+        // collapsed={collapsed}
       >
-        {/* {this.renderMenuHeader()} */}
-        {
-          menuLoading ?
-            <div className={'menu-loading'}><Spin /></div> :
-            <SiderMenu
-              onClick={this.onMenuClick}
-              onOpenChange={this.onOpenChange}
-              // openKeys={firstHide ? null : openKeys}
-              // selectedKeys={selectedKeys}
-              menus={maxMenu > 3 ? fourMenuList : menuList}
-              inlineIndent={18}
-              theme="dark"
-              mode="inline"
-            />
-        }
+        <Menu
+          mode="inline"
+          theme="dark"
+          onClick={this.onMenuClick}
+        >
+          <Menu.SubMenu title={'测试菜单'}>
+            <Menu.Item>
+              吃
+          </Menu.Item>
+          </Menu.SubMenu>
+        </Menu>
+
       </Sider>
     );
   }
