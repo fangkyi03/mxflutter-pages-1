@@ -24,7 +24,10 @@ if (typeof require !== 'undefined') {
   require.extensions['.less'] = file => { }
 }
 
-module.exports = withPlugins([
+module.exports = {...withPlugins([
+  [
+    
+  ]
   [withBundleAnalyzer,{
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
     analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
@@ -86,4 +89,10 @@ module.exports = withPlugins([
       cssModules: true
     }
   }]
-])
+]),
+  exportPathMap:function(){
+    return {
+      '/loginnew': { page: '/loginnew' }
+    }
+  }
+}

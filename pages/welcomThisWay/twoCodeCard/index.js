@@ -1,4 +1,4 @@
-import React, { Component } from './node_modules/ { Button } from 
+import React, { Component } from 'react'
 
 
 import { Button } from 'antd'
@@ -8,11 +8,11 @@ import './index.less'
 
 export default class TwoCodeCard extends Component {
 
-    QRcodeDown = (id,title) => {//二维码转换下载图片
+    QRcodeDown = (id, title) => {//二维码转换下载图片
         let canvas = document.getElementById(id);
         let a = document.createElement("a");
         a.href = canvas.toDataURL("image/png");
-		a.download = title;
+        a.download = title;
         a.click()
     }
 
@@ -22,25 +22,25 @@ export default class TwoCodeCard extends Component {
             return null
         }
 
-        if(data.isNull){
+        if (data.isNull) {
             return (
-                    <div key={index} className={'codeComponents'}>
-                        <div className={'codeComponentsBox'}>
-                            <img src = {require('../../../images/nopic.png')} title = {'暂无图片'} />       
-                            <div className={'codeComponentsTitle'}>
-                               {data.title}
-                            </div>
+                <div key={index} className={'codeComponents'}>
+                    <div className={'codeComponentsBox'}>
+                        <img src={require('../../../images/nopic.png')} title={'暂无图片'} />
+                        <div className={'codeComponentsTitle'}>
+                            {data.title}
                         </div>
-        
-                        <Button 
-                            type='primary' 
-                            size = {'small'}
-                            disabled
-                        >
-                            下载二维码
-                        </Button>
                     </div>
-                )
+
+                    <Button
+                        type='primary'
+                        size={'small'}
+                        disabled
+                    >
+                        下载二维码
+                        </Button>
+                </div>
+            )
         }
         // title:'企业黄页',
         // codeSrc:require('../../images/welcom/PQKJ.png'),
@@ -60,14 +60,14 @@ export default class TwoCodeCard extends Component {
                     </div>
                 </div>
 
-                <Button 
-                    type='primary' 
-                    size = {'small'}
-                    onClick = {
-                                () => {
-                                    this.QRcodeDown(data.id,data.title)
-                                }
-                            }
+                <Button
+                    type='primary'
+                    size={'small'}
+                    onClick={
+                        () => {
+                            this.QRcodeDown(data.id, data.title)
+                        }
+                    }
                 >
                     下载二维码
                 </Button>
@@ -96,8 +96,8 @@ export default class TwoCodeCard extends Component {
             </div>
         )
     }
-    
-    
+
+
 
     renderCodeHeader = () => {//渲染下载视图头部组件
         return (
@@ -105,7 +105,7 @@ export default class TwoCodeCard extends Component {
                 <div className={'codeTitle'}>
                     二维码专区
                 </div>
-                <div className={'codeMore'} onClick = {this.props.onNotificationDown} style = {{cursor:'pointer'}}>
+                <div className={'codeMore'} onClick={this.props.onNotificationDown} style={{ cursor: 'pointer' }}>
                     更多>>
                 </div>
             </div>
@@ -114,8 +114,8 @@ export default class TwoCodeCard extends Component {
 
     codeCheck = () => {//检测基地二维码数组是否为空值,加载二维码
         let baseTwocode = this.props.baseTwocode
-        if(baseTwocode.length > 5){
-            baseTwocode = baseTwocode.slice(0,5)
+        if (baseTwocode.length > 5) {
+            baseTwocode = baseTwocode.slice(0, 5)
         }
         let arr = []
         baseTwocode.forEach(item => {
@@ -128,8 +128,8 @@ export default class TwoCodeCard extends Component {
         });
         const pageTwocode = this.props.pageTwocode
         let data = arr.concat(pageTwocode)
-        if(data){
-            data = data.map((item,index) => {
+        if (data) {
+            data = data.map((item, index) => {
                 item.id = 'baseCodeWindow' + index
                 return item
             })
@@ -140,10 +140,10 @@ export default class TwoCodeCard extends Component {
 
     currentNow = () => {//现为空值触发事件
         return (
-            <div style = {{
-                            position: 'relative',
-                            top:'95px'
-                        }}
+            <div style={{
+                position: 'relative',
+                top: '95px'
+            }}
             >
                 暂无数据
             </div>
