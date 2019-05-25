@@ -1,7 +1,7 @@
-import React, { Component } from './node_modules/react'
+import React, { Component } from 'react'
 
 
-import { Button } from './node_modules/antd'
+import { Button } from 'antd'
 // import {domainApp} from "@/env";
 // import QRCode  from 'qrcode.react'
 import './index.less'

@@ -1,5 +1,5 @@
-import React, { Component } from './node_modules/react'
-import { Modal, Input ,message} from './node_modules/antd'
+import React, { Component } from 'react'
+import { Modal, Input ,message} from 'antd'
 import api from '../../../command/api';
 import createDva from "../../../command/createDva";
 const Search = Input.Search;

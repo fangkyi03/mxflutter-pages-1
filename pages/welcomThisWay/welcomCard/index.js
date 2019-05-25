@@ -1,8 +1,8 @@
-import React, { Component } from './node_modules/react'
-import { Row, Col, Button, message, Steps ,} from "./node_modules/antd";
+import React, { Component } from 'react'
+import { Row, Col, Button, message, Steps ,} from "antd";
 import SwiperWelcom from '../swiperWelcom'
 import UploadImages from '../uploadImages'
-import moment from './node_modules/moment'
+import moment from 'moment'
 // import LableClick from '../lableClick'
 import LabelFather from '../labelFather'
 import './index.less'

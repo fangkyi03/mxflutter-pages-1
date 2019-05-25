@@ -1,11 +1,11 @@
-import React, { Component } from './node_modules/react'
-import { Row, Col,Button } from "./node_modules/antd";
+import React, { Component } from 'react'
+import { Row, Col,Button } from "antd";
 import WelcomCard from './welcomCard'
 import TwoCodeCard from './twoCodeCard'
 import './index.less'
 import api from '../../command/api';
 import createDva from "../../command/createDva";
-import cookie from './node_modules/react-cookies'
+import cookie from 'react-cookies'
 
 // @createDva(["welcomThisWay"])
 export default class WelcomThisWay extends Component {
