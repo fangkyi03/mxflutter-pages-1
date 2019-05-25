@@ -1,0 +1,83 @@
+:global{
+
+    .twoCodeCard{
+        height: 260px;
+        margin-top: 10px;
+        padding: 18px 20px;
+        background-color: #fff;
+        color: #000;
+        font-size: 16px;
+        text-align: center;
+
+        .codeHeader{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 0 10px;
+
+            .codeMore{
+                color: #10A6E1;
+            }
+        }
+
+        .codeMain{
+            display: flex;
+            align-items: center;
+            
+            .codeMainCommon{
+                height: 200px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .codeComponents{
+                    width: 112px;
+                    height: 180px;
+                    font-size: 12px;
+                    
+                    .codeComponentsBox{
+                        width: 100%;
+                        padding: 5px;
+                        border: 1px solid #E1E1E1;
+                        margin-bottom: 10px;
+        
+                        img{
+                            width: 100px;
+                            height:100px;
+                            vertical-align: middle;
+                        }
+
+                        canvas{
+                            vertical-align: middle;
+                        }
+
+                        .codeComponentsTitle{
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
+
+            .codeMainLeft{
+                width: 320px;
+                padding-right: 25px;
+                padding-left: 25px;
+                border-right: 1px solid #E1E1E1;
+            }
+
+            .codeMainRight{
+                justify-content: space-between;
+                margin-left: 25px;
+                width: calc(100% - 370px);
+            }
+
+            
+        }
+
+        .ant-btn-primary{
+            padding: 4px 7px;
+            height: 30px;
+        }
+    }
+
+}

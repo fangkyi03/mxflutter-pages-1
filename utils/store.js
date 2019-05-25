@@ -29,10 +29,11 @@ function createDvaStore(initialState) {
 
 function getOrCreateStore(initialState) {
     const isServer = checkServer();
-    if (isServer) { // run in server
-        // console.log('server');
-        return createDvaStore(initialState);
-    }
+    // if (isServer) { // run in server
+    //     // console.log('server');
+        
+    // }
+    return createDvaStore(initialState);
     // eslint-disable-next-line
     if (!window[__NEXT_DVA_STORE__]) {
         // console.log('client');

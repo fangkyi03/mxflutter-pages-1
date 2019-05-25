@@ -23,6 +23,7 @@ if (typeof require !== 'undefined') {
 }
 
 module.exports = withPlugins([
+  [withImage,{}],
   [withInferno,{}],
   [withBundleAnalyzer,{
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),

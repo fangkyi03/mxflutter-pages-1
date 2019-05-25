@@ -24,8 +24,8 @@ fastify.register((fastify, opts, next) => {
         })
       })
 
-      fastify.get('/b', (req, reply) => {
-        return app.render(req.req, reply.res, '/b', req.query).then(() => {
+      fastify.get('/welcomThisWay', (req, reply) => {
+        return app.render(req.req, reply.res, '/welcomThisWay', req.query).then(() => {
           reply.sent = true
         })
       })

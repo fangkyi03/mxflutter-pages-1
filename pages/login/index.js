@@ -3,7 +3,7 @@ import styles from './index.less'
 // import Swiper from "swiper";
 // import { form, input, Row, Col, button, Icon, message } from 'antd';
 // import cookie from 'react-cookies'
-import fetch from 'dva/fetch';
+// import fetch from 'dva/fetch';
 import './index.less';
 // import { domain, domainLogin } from "../../env"
 // import api from "../../command/api";
@@ -21,7 +21,7 @@ const params = (params) => {
 }
 
 // @createDva(["loginNew"])
-class LoginNew extends Component {
+class Login extends Component {
     constructor() {
         super();
         this.state = {
@@ -137,7 +137,7 @@ class LoginNew extends Component {
             window.location.href = "http://supe.ztesa.com.cn:7001/#/welcomThisWay"
 
         } else {
-            this.props.dispatch(routerRedux.replace('/welcomThisWay'));
+            // this.props.dispatch(routerRedux.replace('/welcomThisWay'));
         }
         return true
     }
@@ -376,7 +376,7 @@ class LoginNew extends Component {
                         size="default"
                         className={'inputBottom'}
                         style={{ border: 'none', borderBottom: '1px solid #E5E5E5', borderRadius: 0, }}
-                        placeholder={'请输入您的账号'} />)
+                        placeholder={'请输入您的账号'} />
                     <span   >输入密码</span>
                     <input
                         // prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
@@ -511,4 +511,4 @@ class LoginNew extends Component {
     }
 }
 
-export default LoginNew
+export default Login

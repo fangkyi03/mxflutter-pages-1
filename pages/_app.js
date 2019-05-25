@@ -5,10 +5,10 @@
  */
 import App, { Container } from 'next/app'
 import React from 'react'
-// import withDva from '../utils/store';
+import './app.less'
+import withDva from '../utils/store';
 
-// @withDva()
-export default class AppComponent extends App {
+class AppComponent extends App {
     static async getInitialProps({ Component, ctx }) {
         let pageProps = {}
         if (Component.getInitialProps) {
@@ -19,7 +19,6 @@ export default class AppComponent extends App {
     }
 
     render() {
-        console.log('输出props',this.props)
         const { Component, pageProps } = this.props
         return (
             <Container>
@@ -28,3 +27,4 @@ export default class AppComponent extends App {
         )
     }
 }
+export default AppComponent
