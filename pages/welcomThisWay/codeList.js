@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import createDva from '../../command/createDva';
 import { Button,Row,Col } from 'antd';
-import {domainApp} from "@/env";
+// import {domainApp} from "@/env";
 import api from "../../command/api";
 // import GlobalBorder from '../../components/GlobalBorder';
-import LoadingComponentS from "../../components/LoadComponentS";
-import QRCode  from 'qrcode.react' ;
+// import LoadingComponentS from "../../components/LoadComponentS";
+// import QRCode  from 'qrcode.react' ;
 import styles from './codeList.less';
 
 //  @createDva(['welcomCodeList'])
@@ -46,18 +46,18 @@ import styles from './codeList.less';
             type =0,
             labelName = item.label;
         }
-        const  url =  `http://supe.${domainApp}:7008/?type=${type}&code=base&id=${item.value||0}`; 
+        const  url =  ''
         return(
             <div style = {{textAlign:'center'}}>
                 <div 
                     className = {styles.printCode} 
                    
                 >
-                    <QRCode
+                    {/* <QRCode
                         id={`baseCodeWindow${i}`}
                         size = {134}
                         value={url}
-                    />
+                    /> */}
                     <p>{labelName ||""}</p>
                 </div>
                 
@@ -113,10 +113,10 @@ import styles from './codeList.less';
                 </div>
                 <div className = {styles.boxContent}> 
                    
-                    <LoadingComponentS 
+                    {/* <LoadingComponentS 
                         isShow={isShow}
                         renderComponent={this.renderComponent}
-                    />
+                    /> */}
                     
                 </div>     
             </div>
