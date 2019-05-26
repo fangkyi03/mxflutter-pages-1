@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Upload, Icon ,message} from 'antd'
+import { Upload ,message} from 'antd'
 import cookie from 'react-cookies'
 // import { env } from "@/env";
 import api from '../../../command/api';

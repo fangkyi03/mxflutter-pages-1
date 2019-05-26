@@ -1,4 +1,4 @@
-import { message } from "antd";
+// import { message } from "antd";
 
 export function CreatePrintPage(data) {
   console.log('打印机内传值',data)
@@ -8,12 +8,12 @@ export function CreatePrintPage(data) {
     var strCLodopInstall_1 = "<br><font color='#FF00FF'>Web打印服务CLodop未安装启动，点击这里<a href='CLodop_Setup_for_Win32NT.exe' target='_self'>下载执行安装</a>";
     var strCLodopInstall_2 = "<br>（若此前已安装过，可<a href='CLodop.protocol:setup' target='_self'>点这里直接再次启动</a>）";
     var strCLodopInstall_3 = "，成功后请刷新本页面。</font>";
-    message.warning('请安装打印驱动')
+    // message.warning('请安装打印驱动')
     document.body.innerHTML = strCLodopInstall_1 + strCLodopInstall_2 + strCLodopInstall_3 + document.body.innerHTML;
     return
   }
   if (!LODOP) {
-    message.error('打印机初始化失败')
+    // message.error('打印机初始化失败')
     return 
   }
   LODOP.PRINT_INIT('0');

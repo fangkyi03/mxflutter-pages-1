@@ -1,11 +1,11 @@
-import { message } from "antd";
+// import { message } from "antd";
 
 export function CreatePrintPage(data) {
     console.log('打印机内传值', data)
     let LODOP;
     LODOP = getLodop();
     if (!LODOP) {
-        message.error('打印机初始化失败')
+        // message.error('打印机初始化失败')
         return
     }
     LODOP.PRINT_INIT('0');

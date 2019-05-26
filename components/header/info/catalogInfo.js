@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Badge, Icon, message, Tabs,Modal} from 'antd';
+import {Badge, Icon, Tabs,Modal} from 'antd';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
 import './info.less';

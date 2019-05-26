@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Form, Modal, message,Input ,Button } from 'antd'
+import {Form, Modal,Input ,Button } from 'antd'
 import LoadComponent from '@/components/LoadComponent'
 import { connect } from 'dva'
 import request from '@/utils/request'
@@ -33,14 +33,14 @@ class NewAdd extends Component {
           ...values
           }).then(res => {
             if (res.code === 200) {
-              message.success('修改密码成功！')
+              // message.success('修改密码成功！')
               this.props.onClose&&this.props.onClose();
                this.loginOut()
             } else {
               this.setState({
                 loading: false
               });
-              message.error(res.msg)
+              // message.error(res.msg)
             }
           }).catch(() => {
             this.setState({
@@ -69,22 +69,22 @@ class NewAdd extends Component {
               cookie.remove("user", { domain: domain });
               this.props.dispatch({ type: "clearModel/clearAll" });
                getLogin(loginType,this)
-              message.success("退出成功");
+              // message.success("退出成功");
             } else {
-              message.error("退出失败");
+              // message.error("退出失败");
             }
          });
       
     }else{
       this.props.dispatch({ type: "clearModel/clearAll" });
       getLogin(loginType,this)
-      message.success("退出成功");
+      // message.success("退出成功");
     }
    
   };
 
   onCancel = () => {
-    message.info('请修改密码！')
+    // message.info('请修改密码！')
   };
 
   handleConfirmPassword=(rule,value,callback)=>{

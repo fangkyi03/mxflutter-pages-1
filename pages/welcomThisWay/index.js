@@ -271,7 +271,7 @@ export default class WelcomThisWay extends Component {
                         img: [
                             {
                                 title: '服务微信',
-                                src: require('../../images/welcom/wxgzh.png'),
+                                // src: require('../../images/welcom/wxgzh.png'),
                                 icon: require('../../images/welcom/ic_wechat.png')
                             }
                         ],
@@ -302,7 +302,7 @@ export default class WelcomThisWay extends Component {
                         img: [
                             {
                                 title: 'app下载',
-                                src: require('../../images/welcom/all.png'),
+                                // src: require('../../images/welcom/all.png'),
                             }
                             // {
                             //     title: 'Android下载',
@@ -486,7 +486,7 @@ export default class WelcomThisWay extends Component {
                     type:0,
                     isNull: true,
                     title:'小程序旺铺',
-                    codeSrc:require('../../images/welcom/PQKJ.png'),
+                    // codeSrc:require('../../images/welcom/PQKJ.png'),
                     downloadUrl:'https://pan.baidu.com/s/1OEa6R5xR1uqVZddIpClx5g',
         })
 

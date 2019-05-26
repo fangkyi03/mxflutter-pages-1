@@ -5,7 +5,6 @@ import {
   Dropdown,
   Icon,
   Avatar,
-  message,
   Modal /*,notification*/,
   // Badge,
   // Popover,
@@ -65,9 +64,9 @@ class Head extends Component {
               // console.log(domainLogin)
                getLogin(loginType,this)
             
-              message.success("退出成功");
+              // message.success("退出成功");
             } else {
-              message.error("退出失败");
+              // message.error("退出失败");
             }
          });
         }
@@ -75,7 +74,7 @@ class Head extends Component {
     }else{
       this.props.dispatch({ type: "clearModel/clearAll" });
       getLogin(loginType,this)
-      message.success("退出成功");
+      // message.success("退出成功");
     }
    
   };

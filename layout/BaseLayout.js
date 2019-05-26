@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './BaseLayout.less';
-import { Layout, message } from 'antd';
+import { Layout } from 'antd';
 import {
   withRouter, Route, Redirect, Switch,
 } from 'dva/router';

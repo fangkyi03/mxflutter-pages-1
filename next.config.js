@@ -91,5 +91,16 @@ module.exports = withPlugins([
       return {
         '/login': { page: '/login' }
       }
+    },
+    webpack(config, options) {
+      console.log('输出webpack', config.module)
+      config.module.rules.push({
+        loader: 'webpack-ant-icon-loader',
+        enforce: 'pre',
+        include: [
+          require.resolve('@ant-design/icons/lib/dist')
+        ]
+      })
+      return config
     }
 })

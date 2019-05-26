@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
-import Swiper from 'swiper'
+// import Swiper from 'swiper'
 import { relative } from 'path';
 
 export default class SwiperWelcom extends Component {
 
     componentWillReceiveProps(){
-        new Swiper(`.${this.props.name}`, {
-            initialSlide:0,
-            observer: true,//修改swiper自己或子元素时，自动初始化swiper
-            observeParents: true,
-            navigation: {
-                   nextEl: '.swiper-button-next',
-                   prevEl: '.swiper-button-prev',
-            },
-        });
+        // new Swiper(`.${this.props.name}`, {
+        //     initialSlide:0,
+        //     observer: true,//修改swiper自己或子元素时，自动初始化swiper
+        //     observeParents: true,
+        //     navigation: {
+        //            nextEl: '.swiper-button-next',
+        //            prevEl: '.swiper-button-prev',
+        //     },
+        // });
     }
 
     componentDidMount() {

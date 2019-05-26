@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styles from './index.less'
-import {Button} from 'antd'
+// import {Button} from 'antd'
 
 // import Swiper from "swiper";
 // import { form, input, Row, Col, button, Icon, message } from 'antd';
@@ -499,7 +499,6 @@ class Login extends Component {
     render() {
         return (
             <div className={styles.main}>
-                <Button>1231</Button>
                 <div className={styles.bodyView}>
                     <div className={styles.bodyHeader} />
                     <div className={styles.body}>

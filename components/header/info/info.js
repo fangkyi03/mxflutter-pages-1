@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Badge, Icon, message, Tabs,Modal} from 'antd';
+import {Badge, Icon, Tabs,Modal} from 'antd';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
 import './info.less';
@@ -95,7 +95,7 @@ class Info extends Component {
            // current:current+1
           }) 
       }else {
-        message.error(res.msg)
+        // message.error(res.msg)
       }
     }).catch(err=>{})
     // return 
@@ -112,7 +112,7 @@ class Info extends Component {
            // current:current+1
           }) 
       }else {
-        message.error(res.msg)
+        // message.error(res.msg)
       }
     }).catch(err=>{})
     // return 
@@ -136,7 +136,7 @@ class Info extends Component {
         // console.log(listData)
         return  listData;
       }else { 
-        message.error(res.msg)
+        // message.error(res.msg)
         return [];
       }
     }).catch(err=>{})

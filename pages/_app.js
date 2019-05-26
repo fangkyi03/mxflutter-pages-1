@@ -7,7 +7,7 @@ import App, { Container } from 'next/app'
 import React from 'react'
 import './app.less'
 import withDva from '../utils/store';
-// require('../command/api.js')
+require('../command/initalApi')
 
 class AppComponent extends App {
     static async getInitialProps({ Component, ctx }) {
@@ -15,7 +15,6 @@ class AppComponent extends App {
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx)
         }
-
         return { pageProps }
     }
 

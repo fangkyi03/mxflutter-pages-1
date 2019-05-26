@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from './index.less'
-import Swiper from "swiper";
-import { Form, Input, Row, Col, Button, Icon, message } from 'antd';
+// import Swiper from "swiper";
+import { Form, Input, Row, Col } from 'antd';
 import cookie from 'react-cookies'
 import fetch from 'dva/fetch';
 import './index.less';
@@ -9,8 +9,8 @@ import './index.less';
 import api from "../../command/api";
 import { routerRedux } from 'dva/router';
 import createDva from "../../command/createDva";
-import androidImg from '../../images/welcom/PQKJ.png'
-import IOSimg from '../../images/LoginNew/ios.png'
+// import androidImg from '../../images/welcom/PQKJ.png'
+// import IOSimg from '../../images/LoginNew/ios.png'
 import printImg from '../../images/LoginNew/ic_down.png'
 import { callbackify } from 'util';
 const FormItem = Form.Item;
@@ -33,8 +33,8 @@ class LoginNew extends Component {
         };
         this.codeList = [
             // {txt:'IOS下载',img_src:androidImg},
-            { txt: 'Android下载', img_src: androidImg },
-            { txt: 'IOS下载', img_src: IOSimg }
+            // { txt: 'Android下载', img_src: androidImg },
+            // { txt: 'IOS下载', img_src: IOSimg }
             // {txt:'IOS下载',img_src:androidImg},
 
         ];
@@ -49,16 +49,16 @@ class LoginNew extends Component {
     }
 
     componentDidMount() {
-        let swiper = new Swiper('.swiper-container', {
-            autoHeight: true,
-            loop: true,
-            centeredSlides: true,
-            loading: false,
-            autoplay: {
-                delay: 3000
-            }
-        });
-        console.log('swiper----------------', swiper)
+        // let swiper = new Swiper('.swiper-container', {
+        //     autoHeight: true,
+        //     loop: true,
+        //     centeredSlides: true,
+        //     loading: false,
+        //     autoplay: {
+        //         delay: 3000
+        //     }
+        // });
+        // console.log('swiper----------------', swiper)
         // swiper.autoplay.start()
         let token = cookie.load('token');
 
@@ -178,7 +178,7 @@ class LoginNew extends Component {
         //console.log()
         return (
             <div className={'login-btn'} style={{ width: '100%' }}>
-                <Button
+                <button
                     size={'large'}
                     type={'primary'}
                     onClick={this.state.isPhone ? this.onPhoneLogin : this.onLogin}
@@ -187,7 +187,7 @@ class LoginNew extends Component {
                     loading={this.state.loading}
                 >
                     登录
-            </Button>
+            </button>
             </div>
         )
     }
@@ -363,7 +363,7 @@ class LoginNew extends Component {
                                     type={'input'} />
                             )}
                         </FormItem>
-                        <Button
+                        <button
                             disabled={this.state.btnDefault}
                             style={{
                                 backgroundColor: `${this.state.btnDefault ? '#ccc' : 'rgb(63, 186, 44)'}`,
@@ -372,7 +372,7 @@ class LoginNew extends Component {
                             onClick={this.getCheckCode} 
                     >
                             获取验证码{this.state.btnDefault ? `(${this.state.btnNumber})` : ''}
-                    </Button>
+                    </button>
                     </div>
 
                 </div>
@@ -503,35 +503,7 @@ class LoginNew extends Component {
         ]
         const text = ['客服服务：0574-55841200', '技术服务：0574-55843501']
         // const text = ['技术服务：0574-55843501']
-        return (
-            <div className={styles.bodyLeft}>
-                {/* <div className="swiper-no-swiping"> */}
-                <div className={'swiper-container swiper-no-swiping'} style={{ zIndex: 1, paddingLeft: 30, paddingTop: 20, overflow: 'hidden' }}>
-                    <div className={'swiper-wrapper'}>
-                        {
-                            data.map((e, i) => {
-                                return (
-                                    <div className={'swiper-slide'} key={i}>
-                                        <img src={e} width={470} height={'80%'} />
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                </div>
-                {/* </div> */}
-
-                <div style={{ width: 450, justifyContent: 'space-between', alignItems: 'center', display: 'flex', paddingLeft: 10, paddingRight: 10, marginBottom: 20 }}>
-                    {
-                        text.map((e, i) => {
-                            return (
-                                <span key={i} style={{ fontSize: 14 }}>{e}</span>
-                            )
-                        })
-                    }
-                </div>
-            </div>
-        )
+        return null
     }
 
     render() {

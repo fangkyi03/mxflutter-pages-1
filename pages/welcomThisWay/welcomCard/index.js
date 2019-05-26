@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col, Button, message, Steps, } from "antd";
 import SwiperWelcom from '../swiperWelcom'
 import UploadImages from '../uploadImages'
-import moment from 'moment'
+// import moment from 'moment'
 // import LableClick from '../lableClick'
 import LabelFather from '../labelFather'
 import './index.less'
@@ -10,9 +10,7 @@ import './index.less'
 // import createDva from "../../../command/createDva";
 
 // @createDva(["welcomThisWay"])
-const Step = Steps.Step;
-
-
+// const Step = Steps.Step;
 export default class WelcomCard extends Component {
 
     constructor(props) {
@@ -402,7 +400,7 @@ export default class WelcomCard extends Component {
                             登录用户：<span style={{ fontSize: '18px', fontWeight: '700' }}>{item.loginUsr}</span>
                         </div>
                         <div className={'loginTime'}>
-                            最后登录时间：{moment(this.props.lastLoginTime).format('LLLL')}
+                            {/* 最后登录时间：{moment(this.props.lastLoginTime).format('LLLL')} */}
                         </div>
                     </div>
                 </div>

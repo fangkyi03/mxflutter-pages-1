@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Badge, Icon, message, Tabs/*,notification*/} from 'antd';
+import {Badge, Icon, Tabs/*,notification*/} from 'antd';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
 import './info.less';
@@ -62,7 +62,7 @@ class Info extends Component {
       if(res.code===200){
         chart.changeData(res.data)
       }else {
-        message.error(res.msg)
+        // message.error(res.msg)
       }
     }).catch(err=>{})
   }

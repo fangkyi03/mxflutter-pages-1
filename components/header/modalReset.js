@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Form, Modal, message,Input  } from 'antd'
+import {Form, Modal,Input  } from 'antd'
 // import LoadComponent from '@/components/LoadComponent'
 import { connect } from 'dva'
 // import request from '@/utils/request'
