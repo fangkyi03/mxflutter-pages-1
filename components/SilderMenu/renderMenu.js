@@ -4,7 +4,7 @@ import { Link } from 'dva/router';
 
 const jumpRouter = (router) =>{
   console.log('输出permission', router)
-  window.location.href = 'http://nongqibang.com:7001/#/' + router
+  window.location.href = 'http://supe.nongqibang.com:7001/#/' + router
 }
 
 const renderMenuItem = ({
