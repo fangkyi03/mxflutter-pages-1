@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node ./server.js",
-    "build": "BUNDLE_ANALYZE=browser next ",
+    "build": "BUNDLE_ANALYZE=browser next build",
     "start": "cross-env NODE_ENV=production node ./server.js",
     "export": "next export"
   },
