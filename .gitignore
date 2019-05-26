@@ -29,3 +29,4 @@ examples/**/out
 
 examples/custom-server-fastify
 examples/custom-server-fastify/node_modules
+bundles
