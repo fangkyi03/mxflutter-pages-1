@@ -3,20 +3,13 @@
  * that will apply to every page. Full info on how the default works
  * can be found here: https://github.com/garmeeh/next-seo#default-seo-configuration
  */
-import App, { Container } from 'next/app'
+import { Container } from 'next/app'
 import React from 'react'
 import './app.less'
-import withDva from '../utils/store';
 require('../command/initalApi')
 
-class AppComponent extends App {
-    static async getInitialProps({ Component, ctx }) {
-        let pageProps = {}
-        if (Component.getInitialProps) {
-            pageProps = await Component.getInitialProps(ctx)
-        }
-        return { pageProps }
-    }
+var window = {}
+class AppComponent extends React.Component {
 
     render() {
         const { Component, pageProps } = this.props

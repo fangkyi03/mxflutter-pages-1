@@ -5,7 +5,7 @@ import {connect} from 'dva'
 // import request from "@/utils/request"
 // import cookie from 'react-cookies'
 
-// @connect(({menubtn})=>({...menubtn}))
+@connect(({menubtn})=>({...menubtn}))
 export default class LogoNav extends Component{
   constructor(prop) {
     super(prop);

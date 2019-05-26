@@ -93,7 +93,8 @@ module.exports = withPlugins([
       }
     },
     webpack(config, options) {
-      console.log('输出webpack', config.module)
+      console.log('输出webpack', config.output)
+      config.output = { ...config.output, globalObject: 'this',}
       config.module.rules.push({
         loader: 'webpack-ant-icon-loader',
         enforce: 'pre',

@@ -8,7 +8,7 @@ import createDva from "../../command/createDva";
 import cookie from 'react-cookies'
 import BaseLayout from '../../layout/BaseLayout';
 
-// @createDva(["welcomThisWay"])
+@createDva(["welcomThisWay"])
 export default class WelcomThisWay extends Component {
  
     constructor(props) {

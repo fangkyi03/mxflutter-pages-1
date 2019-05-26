@@ -1,7 +1,11 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
 import { Link } from 'dva/router';
-// import { getRouterArr } from '../../common/router';
+
+const jumpRouter = (router) =>{
+  console.log('输出permission', router)
+  window.location.href = 'http://nongqibang.com:7001/#/' + router
+}
 
 const renderMenuItem = ({
   label, icon, permission, isLeaf, parentId, ...props
@@ -10,10 +14,10 @@ const renderMenuItem = ({
     key={permission}
     {...props}
   >
-    <Link to={permission}>
+    <div onClick={()=>jumpRouter(permission)}>
       {icon && <Icon type={icon} />}
       <span className="nav-text">{label}</span>
-    </Link>
+    </div>
   </Menu.Item>
 );
 

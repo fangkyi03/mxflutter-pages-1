@@ -1,0 +1,564 @@
+{
+    "code": 200,
+    "data": {
+        "buttonCode": [
+            "detection_self_post",
+            "detection_self_del",
+            "detection_self_detail",
+            "deviceList_add",
+            "deviceList_edit",
+            "deviceList_del"
+        ],
+        "menu": [
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "欢迎页",
+                        "parentId": 10400,
+                        "permission": "welcomThisWay",
+                        "type": "1",
+                        "value": 10430
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "企业黄页",
+                        "parentId": 10400,
+                        "permission": "yellowPage",
+                        "type": "1",
+                        "value": 10422
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "企业信息",
+                        "parentId": 10400,
+                        "permission": "newMainFarm",
+                        "type": "1",
+                        "value": 10429
+                    }
+                ],
+                "icon": "credit-card",
+                "isLeaf": false,
+                "label": "企业信息",
+                "parentId": 0,
+                "permission": "company2",
+                "type": "0",
+                "value": 10400
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "我的店铺",
+                        "parentId": 10435,
+                        "permission": "myShop",
+                        "type": "1",
+                        "value": 10438
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "上架产品",
+                        "parentId": 10435,
+                        "permission": "stackProd",
+                        "type": "1",
+                        "value": 10439
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "订单管理",
+                        "parentId": 10435,
+                        "permission": "orderManagement",
+                        "type": "1",
+                        "value": 10436
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "申请结算",
+                        "parentId": 10435,
+                        "permission": "myShopApplicationSettlement",
+                        "type": "1",
+                        "value": 10437
+                    }
+                ],
+                "icon": "shopping-cart",
+                "isLeaf": false,
+                "label": "小程序店铺",
+                "parentId": 0,
+                "permission": "shop",
+                "type": "0",
+                "value": 10435
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "产品登记信息",
+                        "parentId": 10033,
+                        "permission": "farmproductlist",
+                        "type": "1",
+                        "value": 10222
+                    }
+                ],
+                "icon": "barcode",
+                "isLeaf": false,
+                "label": "产品信息",
+                "parentId": 0,
+                "permission": "products",
+                "type": "0",
+                "value": 10033
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "溯源码打印",
+                        "parentId": 10426,
+                        "permission": "traceManagement",
+                        "type": "1",
+                        "value": 10427
+                    }
+                ],
+                "icon": "printer",
+                "isLeaf": false,
+                "label": "溯源码打印",
+                "parentId": 0,
+                "permission": "printf",
+                "type": "0",
+                "value": 10426
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "基地管理",
+                        "parentId": 10053,
+                        "permission": "basemanagement",
+                        "type": "1",
+                        "value": 10221
+                    }
+                ],
+                "icon": "scan",
+                "isLeaf": false,
+                "label": "基地管理",
+                "parentId": 0,
+                "permission": "originbase",
+                "type": "0",
+                "value": 10053
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "生产任务",
+                        "parentId": 10097,
+                        "permission": "productControl",
+                        "type": "1",
+                        "value": 10451
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "采收",
+                        "parentId": 10097,
+                        "permission": "pick",
+                        "type": "1",
+                        "value": 10453
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "包装",
+                        "parentId": 10097,
+                        "permission": "packList",
+                        "type": "1",
+                        "value": 10454
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "icon": "",
+                                "isLeaf": true,
+                                "label": "农事记录",
+                                "parentId": 10098,
+                                "permission": "farminglist",
+                                "type": "1",
+                                "value": 10147
+                            }
+                        ],
+                        "icon": "",
+                        "isLeaf": false,
+                        "label": "农事管理",
+                        "parentId": 10097,
+                        "permission": "farmingManagement",
+                        "type": "0",
+                        "value": 10098
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "icon": "",
+                                "isLeaf": true,
+                                "label": "投入品管理",
+                                "parentId": 10154,
+                                "permission": "inputetc",
+                                "type": "1",
+                                "value": 10432
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "isLeaf": true,
+                                "label": "使用记录",
+                                "parentId": 10154,
+                                "permission": "inputRecord",
+                                "type": "1",
+                                "value": 10433
+                            }
+                        ],
+                        "icon": "",
+                        "isLeaf": false,
+                        "label": "投入品管理",
+                        "parentId": 10097,
+                        "permission": "inputManagement",
+                        "type": "0",
+                        "value": 10154
+                    }
+                ],
+                "icon": "shop",
+                "isLeaf": false,
+                "label": "生产管理",
+                "parentId": 0,
+                "permission": "productControl",
+                "type": "0",
+                "value": 10097
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "产销管理",
+                        "parentId": 10448,
+                        "permission": "meatPAMhome",
+                        "type": "1",
+                        "value": 10471
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "出库单",
+                        "parentId": 10448,
+                        "permission": "meatPAMoutboundOrder",
+                        "type": "1",
+                        "value": 10472
+                    }
+                ],
+                "icon": "qrcode",
+                "isLeaf": false,
+                "label": "产销管理",
+                "parentId": 0,
+                "permission": "buy",
+                "type": "0",
+                "value": 10448
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "出栏管理",
+                        "parentId": 10464,
+                        "permission": "outOfBar",
+                        "type": "1",
+                        "value": 10465
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "屠宰检疫",
+                        "parentId": 10464,
+                        "permission": "slaughter",
+                        "type": "1",
+                        "value": 10466
+                    }
+                ],
+                "icon": "tag",
+                "isLeaf": false,
+                "label": "屠宰管理",
+                "parentId": 0,
+                "permission": "kill",
+                "type": "0",
+                "value": 10464
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "设备列表",
+                        "parentId": 10025,
+                        "permission": "deviceList",
+                        "type": "1",
+                        "value": 10401
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "自检任务",
+                        "parentId": 10025,
+                        "permission": "mytaskList",
+                        "type": "1",
+                        "value": 10223
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "自检报告",
+                        "parentId": 10025,
+                        "permission": "detectionlist",
+                        "type": "1",
+                        "value": 10224
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "第三方检测",
+                        "parentId": 10025,
+                        "permission": "thirdPartyMonitorNew",
+                        "type": "1",
+                        "value": 10402
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "土壤检测",
+                        "parentId": 10025,
+                        "permission": "mainSoilSamplingList",
+                        "type": "1",
+                        "value": 10458
+                    }
+                ],
+                "icon": "safety",
+                "isLeaf": false,
+                "label": "检测管理",
+                "parentId": 0,
+                "permission": "detection1",
+                "type": "0",
+                "value": 10025
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "我的三品一标",
+                        "parentId": 10198,
+                        "permission": "certificationNewManage",
+                        "type": "1",
+                        "value": 10446
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "我的申报",
+                        "parentId": 10198,
+                        "permission": "declareManage",
+                        "type": "1",
+                        "value": 10226
+                    }
+                ],
+                "icon": "book",
+                "isLeaf": false,
+                "label": "三品一标管理",
+                "parentId": 0,
+                "permission": "certification1",
+                "type": "0",
+                "value": 10198
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "物联网数据分析",
+                        "parentId": 10404,
+                        "permission": "visualMain",
+                        "type": "1",
+                        "value": 10405
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "物联网数据采集",
+                        "parentId": 10404,
+                        "permission": "observatoryMain",
+                        "type": "1",
+                        "value": 10406
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "视频监控",
+                        "parentId": 10404,
+                        "permission": "audioVisualMain",
+                        "type": "1",
+                        "value": 10407
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "传感器管理",
+                        "parentId": 10404,
+                        "permission": "sensorManagement",
+                        "type": "1",
+                        "value": 10408
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "摄像头管理",
+                        "parentId": 10404,
+                        "permission": "videoSurveillance",
+                        "type": "1",
+                        "value": 10409
+                    }
+                ],
+                "icon": "calculator",
+                "isLeaf": false,
+                "label": "农业物联网应用系统",
+                "parentId": 0,
+                "permission": "iot",
+                "type": "0",
+                "value": 10404
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "组织机构管理",
+                        "parentId": 10216,
+                        "permission": "mainorg",
+                        "type": "1",
+                        "value": 10219
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "角色管理",
+                        "parentId": 10216,
+                        "permission": "mainrole",
+                        "type": "1",
+                        "value": 10218
+                    },
+                    {
+                        "children": [],
+                        "icon": "",
+                        "isLeaf": true,
+                        "label": "用户管理",
+                        "parentId": 10216,
+                        "permission": "mainuser",
+                        "type": "1",
+                        "value": 10217
+                    }
+                ],
+                "icon": "idcard",
+                "isLeaf": false,
+                "label": "企业管理",
+                "parentId": 0,
+                "permission": "mainuser",
+                "type": "0",
+                "value": 10216
+            }
+        ],
+        "userVO": {
+            "admin": 0,
+            "areaIds": [],
+            "auth": 0,
+            "avatar": "",
+            "company": 0,
+            "createdate": null,
+            "dept": null,
+            "deptId": "",
+            "deptName": "",
+            "mobile": "",
+            "org": null,
+            "orgIds": [],
+            "orgRegion": "",
+            "password": "",
+            "realname": "",
+            "regionCode": "",
+            "roleList": [
+                {
+                    "createTime": null,
+                    "delFlag": "",
+                    "remarks": "",
+                    "roleCode": "",
+                    "roleId": 0,
+                    "roleName": "company",
+                    "updateTime": null
+                },
+                {
+                    "createTime": null,
+                    "delFlag": "",
+                    "remarks": "",
+                    "roleCode": "",
+                    "roleId": 0,
+                    "roleName": "ROLE_USER",
+                    "updateTime": null
+                }
+            ],
+            "salt": "",
+            "state": "",
+            "updatedate": null,
+            "userId": 0,
+            "username": "13511111111"
+        }
+    },
+    "msg": "success",
+    "token": ""
+}

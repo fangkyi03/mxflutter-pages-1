@@ -12,6 +12,7 @@ import createDva from "../../command/createDva";
 // import androidImg from '../../images/welcom/PQKJ.png'
 // import IOSimg from '../../images/LoginNew/ios.png'
 import printImg from '../../images/LoginNew/ic_down.png'
+
 import { callbackify } from 'util';
 const FormItem = Form.Item;
 const params = (params) => {
@@ -20,7 +21,6 @@ const params = (params) => {
     return arr.join('&')
 }
 
-// @createDva(["loginNew"])
 class LoginNew extends Component {
     constructor() {
         super();
@@ -129,19 +129,21 @@ class LoginNew extends Component {
         )
     }
     getLocationName = () => {
-        const hostname = window.location.hostname;
-        if (hostname.indexOf('nongqibang.com') > -1) {
-            window.location.href = "http://supe.nongqibang.com:7001/#/welcomThisWay"
-            // window.location.href = "http://supe.ztesa.com.cn:7001/#/yellowPage"
-        } else if (hostname.indexOf('ztesa.com.cn') > 1) {
-            window.location.href = "http://supe.ztesa.com.cn:7001/#/welcomThisWay"
+        // const hostname = window.location.hostname;
+        // if (hostname.indexOf('nongqibang.com') > -1) {
+        //     window.location.href = "http://supe.nongqibang.com:7001/#/welcomThisWay"
+        //     // window.location.href = "http://supe.ztesa.com.cn:7001/#/yellowPage"
+        // } else if (hostname.indexOf('ztesa.com.cn') > 1) {
+        //     window.location.href = "http://supe.ztesa.com.cn:7001/#/welcomThisWay"
 
-        } else {
-            this.props.dispatch(routerRedux.replace('/welcomThisWay'));
-        }
-        return true
+        // } else {
+        //     this.props.dispatch(routerRedux.replace('/welcomThisWay'));
+        // }
+        // return true
     }
     onLogin = (e) => {
+        cookie.save('tokenType', 'bearer', { domain: 'nongqibang.com' })
+        cookie.save('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsaWNlbnNlIjoibWFkZSBieSB6dGVzYSIsInVzZXJfbmFtZSI6IjEzNTExMTExMTExIiwic2NvcGUiOlsic2VydmVyIl0sImV4cCI6MTU1ODg5NDE1MywidXNlcklkIjoyODU0LCJhdXRob3JpdGllcyI6WyJjb21wYW55IiwiUk9MRV9VU0VSIl0sImp0aSI6IjUyYTY3NGJkLWFmNzAtNGI2NS05YWQ2LTY1ZGE1NmQ3NDcwOCIsImNsaWVudF9pZCI6Inp0ZXNhIn0.lgG3zG15irq3vCXN8XGa-g3QPULXpOgOM9cUfwZLxWk', { domain: 'nongqibang.com' })
         window.location.href = '/welcomThisWay'
         e.preventDefault();
         this.props.form.validateFields((err, val) => {

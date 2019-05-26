@@ -1,25 +1,27 @@
 import './index.less';
 import React, { Component } from 'react';
-import { Layout, Icon, Spin, Transfer,Menu } from 'antd';
+import { Layout, Icon, Spin, Transfer } from 'antd';
 import { withRouter } from 'dva/router';
-// import SiderMenu from './renderMenu';
-// import LogoNav from './logoNav'
+import SiderMenu from './renderMenu';
+import LogoNav from './logoNav'
 import { connect } from 'dva';
+import api from '../../command/api';
 // import {env} from '@/env'
 // import request from '@/utils/request'
 
 const { Sider } = Layout;
 
 class SiderCustom extends Component {
-  // constructor(props, context) {
-  //   super(props, context);
-  //   this.state = {
-  //     openKeys: [],
-  //     selectedKeys: [],
-  //     collapsed: false,
-  //     firstHide: false
-  //   };
-  // }
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      openKeys: [],
+      selectedKeys: [],
+      collapsed: false,
+      firstHide: false,
+      menuList:[]
+    };
+  }
   UNSAFE_componentWillMount() {
     const { history } = this.props;
     // history.listen(e => {
@@ -47,34 +49,34 @@ class SiderCustom extends Component {
   }
 
   componentDidMount() {
-    // this.props.dispatch({
-    //   type: 'menubtn/getMenuBtn'
-    // })
+    this.setState({
+      menuList:require('./menu.json').data.menu
+    })
   }
 
   toggleCollapsed = () => {
-    // this.setState({
-    //   collapsed: !this.state.collapsed,
-    //   firstHide: !this.state.collapsed
-    // });
+    this.setState({
+      collapsed: !this.state.collapsed,
+      firstHide: !this.state.collapsed
+    });
   };
 
   //渲染菜单头部数据
   renderMenuHeader = () => {
-    // const { collapsed } = this.state
-    // return (
-    //   <div>
-    //     <div className="aside-btn">
-    //       <a onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
-    //       {/* 11111111111 */}
-    //         <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
-    //       </a>
-    //     </div>
-    //     <div className="logo">
-    //       <LogoNav collapsed={collapsed} />
-    //     </div>
-    //   </div>
-    // );
+    const { collapsed } = this.state
+    return (
+      <div>
+        <div className="aside-btn">
+          <a onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
+          {/* 11111111111 */}
+            <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
+          </a>
+        </div>
+        <div className="logo">
+          <LogoNav collapsed={collapsed} />
+        </div>
+      </div>
+    );
   };
 
   onOpenChange = (e) => {
@@ -84,18 +86,13 @@ class SiderCustom extends Component {
     });
   }
 
-  onMenuClick = (e) => {
-    console.log('输出e',e)
-    // this.props.dispatch({type:"clearModel/clearAll"});
+  onMenuClick = () =>{
+    this.props.dispatch({type:"clearModel/clearAll"});
   }
 
   render() {
-    const data = [
-      {
-        name:'测试',
-        path:''
-      }
-    ]
+    const { menuLoading, maxMenu } = this.props;
+    const { collapsed, openKeys, selectedKeys, firstHide, menuList } = this.state
     return (
       <Sider
         collapsible
@@ -104,23 +101,26 @@ class SiderCustom extends Component {
         width={230}
         theme={'dark'}
         // collapsedWidth={50】
-        // collapsed={collapsed}
+        collapsed={collapsed}
       >
-        <Menu
-          mode="inline"
-          theme="dark"
-          onClick={this.onMenuClick}
-        >
-          <Menu.SubMenu title={'测试菜单'}>
-            <Menu.Item>
-              吃
-          </Menu.Item>
-          </Menu.SubMenu>
-        </Menu>
-
+        {this.renderMenuHeader()}
+        {
+          menuLoading ?
+            <div className={'menu-loading'}><Spin /></div> :
+            <SiderMenu
+              onClick={this.onMenuClick}
+              onOpenChange={this.onOpenChange}
+              // openKeys={firstHide ? null : openKeys}
+              // selectedKeys={selectedKeys}
+              menus={menuList}
+              inlineIndent={18}
+              theme="dark"
+              mode="inline"
+            />
+        }
       </Sider>
     );
   }
 }
 
-export default SiderCustom
+export default connect(({ menubtn }) => ({ ...menubtn }))(SiderCustom);

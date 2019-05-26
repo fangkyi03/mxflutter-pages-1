@@ -1,7 +1,7 @@
 import React from 'react';
 import dva, { connect } from 'dva-no-router';
 import { Provider } from 'react-redux';
-// import model from '../model/index';
+import model from '../model/index';
 
 const checkServer = () => Object.prototype.toString.call(global.process) === '[object process]';
 
@@ -10,7 +10,13 @@ const __NEXT_DVA_STORE__ = '__NEXT_DVA_STORE__'
 
 function createDvaStore(initialState) {
     let app;
-    app = dva({});
+    if (initialState) {
+        app = dva({
+            initialState,
+        });
+    } else {
+        app = dva({});
+    }
     // const isArray = Array.isArray(model);
     // if (isArray) {
     //     model.forEach((m) => {
@@ -29,11 +35,10 @@ function createDvaStore(initialState) {
 
 function getOrCreateStore(initialState) {
     const isServer = checkServer();
-    // if (isServer) { // run in server
-    //     // console.log('server');
-        
-    // }
-    return createDvaStore(initialState);
+    if (isServer) { // run in server
+        // console.log('server');
+        return createDvaStore(initialState);
+    }
     // eslint-disable-next-line
     if (!window[__NEXT_DVA_STORE__]) {
         // console.log('client');
