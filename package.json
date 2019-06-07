@@ -5,7 +5,7 @@
     "dev": "node ./server.js",
     "build": "BUNDLE_ANALYZE=browser next build",
     "start": "cross-env NODE_ENV=production node ./server.js",
-    "export": "next export"
+    "export": "next build && next export"
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.4.4",

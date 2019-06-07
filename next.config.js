@@ -73,7 +73,7 @@ module.exports = withPlugins([
       quality: 75,
     },
   }],
-  [withLessExcludeAntd, {
+  [withLess, {
     cssModules: true,
     cssLoaderOptions: {
       importLoaders: 1,
@@ -89,19 +89,19 @@ module.exports = withPlugins([
 ],{
     exportPathMap: function () {
       return {
-        '/login': { page: '/login' }
+        '/video': { page: '/video' }
       }
     },
     webpack(config, options) {
-      console.log('输出webpack', config.output)
-      config.output = { ...config.output, globalObject: 'this',}
-      config.module.rules.push({
-        loader: 'webpack-ant-icon-loader',
-        enforce: 'pre',
-        include: [
-          require.resolve('@ant-design/icons/lib/dist')
-        ]
-      })
+      // console.log('输出webpack', config.output)
+      // config.output = { ...config.output, globalObject: 'this',}
+      // config.module.rules.push({
+      //   loader: 'webpack-ant-icon-loader',
+      //   enforce: 'pre',
+      //   include: [
+      //     require.resolve('@ant-design/icons/lib/dist')
+      //   ]
+      // })
       return config
     }
 })
