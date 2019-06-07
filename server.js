@@ -17,20 +17,8 @@ fastify.register((fastify, opts, next) => {
         })
       }
 
-      fastify.get('/login', (req, reply) => {
-        return app.render(req.req, reply.res, '/login', req.query).then((e) => {
-          reply.sent = true
-        })
-      })
-
-      fastify.get('/loginnew', (req, reply) => {
-        return app.render(req.req, reply.res, '/loginnew', req.query).then(() => {
-          reply.sent = true
-        })
-      })
-
-      fastify.get('/welcomThisWay', (req, reply) => {
-        return app.render(req.req, reply.res, '/welcomThisWay', req.query).then(() => {
+      fastify.get('/video', (req, reply) => {
+        return app.render(req.req, reply.res, '/video', req.query).then((e) => {
           reply.sent = true
         })
       })

@@ -6,9 +6,7 @@
 import { Container } from 'next/app'
 import React from 'react'
 import './app.less'
-require('../command/initalApi')
 
-var window = {}
 class AppComponent extends React.Component {
 
     render() {
