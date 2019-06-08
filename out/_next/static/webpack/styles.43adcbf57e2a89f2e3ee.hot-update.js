@@ -1,42 +1,4 @@
-(this["webpackJsonp"] = this["webpackJsonp"] || []).push([["styles"],{
-
-/***/ "./components/Text/index.less":
-/*!************************************!*\
-  !*** ./components/Text/index.less ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-module.exports = {"numLine":"numLine___2QPC_"};;
-    if (true) {
-      var injectCss = function injectCss(prev, href) {
-        var link = prev.cloneNode();
-        link.href = href;
-        link.onload = function() {
-          prev.parentNode.removeChild(prev);
-        };
-        prev.stale = true;
-        prev.parentNode.insertBefore(link, prev);
-      };
-      module.hot.dispose(function() {
-        window.__webpack_reload_css__ = true;
-      });
-      if (window.__webpack_reload_css__) {
-        module.hot.__webpack_reload_css__ = false;
-        console.log("[HMR] Reloading stylesheets...");
-        var prefix = document.location.protocol + '//' + document.location.host;
-        document
-          .querySelectorAll("link[href][rel=stylesheet]")
-          .forEach(function(link) {
-            if (!link.href.match(prefix) || link.stale) return;
-            injectCss(link, link.href.split("?")[0] + "?unix=1559971147077");
-          });
-      }
-    }
-  
-
-/***/ }),
+webpackHotUpdate("styles",{
 
 /***/ "./node_modules/_antd@3.19.2@antd/lib/message/style/index.less":
 /*!*********************************************************************!*\
@@ -149,43 +111,6 @@ module.exports = {"numLine":"numLine___2QPC_"};;
 
 /***/ }),
 
-/***/ "./pages/app.less":
-/*!************************!*\
-  !*** ./pages/app.less ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin;
-    if (true) {
-      var injectCss = function injectCss(prev, href) {
-        var link = prev.cloneNode();
-        link.href = href;
-        link.onload = function() {
-          prev.parentNode.removeChild(prev);
-        };
-        prev.stale = true;
-        prev.parentNode.insertBefore(link, prev);
-      };
-      module.hot.dispose(function() {
-        window.__webpack_reload_css__ = true;
-      });
-      if (window.__webpack_reload_css__) {
-        module.hot.__webpack_reload_css__ = false;
-        console.log("[HMR] Reloading stylesheets...");
-        var prefix = document.location.protocol + '//' + document.location.host;
-        document
-          .querySelectorAll("link[href][rel=stylesheet]")
-          .forEach(function(link) {
-            if (!link.href.match(prefix) || link.stale) return;
-            injectCss(link, link.href.split("?")[0] + "?unix=1559970134785");
-          });
-      }
-    }
-  
-
-/***/ }),
-
 /***/ "./pages/video/index.less":
 /*!********************************!*\
   !*** ./pages/video/index.less ***!
@@ -216,7 +141,7 @@ module.exports = {"main":"main___2Nezc","bkImage":"bkImage___2unXa","listView":"
           .querySelectorAll("link[href][rel=stylesheet]")
           .forEach(function(link) {
             if (!link.href.match(prefix) || link.stale) return;
-            injectCss(link, link.href.split("?")[0] + "?unix=1559971195667");
+            injectCss(link, link.href.split("?")[0] + "?unix=1559970136030");
           });
       }
     }
@@ -224,5 +149,5 @@ module.exports = {"main":"main___2Nezc","bkImage":"bkImage___2unXa","listView":"
 
 /***/ })
 
-}]);
-//# sourceMappingURL=styles.js.map
+})
+//# sourceMappingURL=styles.43adcbf57e2a89f2e3ee.hot-update.js.map

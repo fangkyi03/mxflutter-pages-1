@@ -3,6 +3,7 @@ import styles from './index.less'
 import LoadingComponent from '../../components/LoadComponent';
 import createDva from '../../command/createDva';
 import apiTool from '../../command/apiTool';
+import Text from '../../components/Text/index';
 
 @createDva(['video'])
 export default class Video extends Component {
@@ -23,6 +24,11 @@ export default class Video extends Component {
     )
   }
 
+  // 播放视频点击事件
+  onPlayVideo = (url) =>{
+    window.postMessage(url.toString());
+  }
+
   renderList = () =>{
     const {data} = this.props
     return (
@@ -34,8 +40,8 @@ export default class Video extends Component {
                 <img src={e.videoPic}/>
                 <div className={styles.listItemFoot}>
                   <h4>{e.videoName}</h4>
-                  <div style={{ color: '#999999', fontFamily:'PingFang-SC-Regular'}}>{e.remark}</div>
-                  <div className={styles.listItemFootButton}>点击播放</div>
+                  <Text numLine={2}>{e.remark}</Text>
+                  <div className={styles.listItemFootButton} onClick={()=>this.onPlayVideo(e.url)}>点击播放</div>
                 </div>
               </div>
             )
