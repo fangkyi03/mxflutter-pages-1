@@ -3,9 +3,17 @@ const fastify = require('fastify')({ logger: { level: 'error' } })
 const Next = require('next')
 const port = parseInt(process.env.PORT, 10) || 3010
 const dev = process.env.NODE_ENV !== 'production'
+const proxyMiddleware = require('http-proxy-middleware')
+const devProxy = {
+  '/api': {
+    target: "http://supe.nongqibang.com:7041",
+    pathRewrite: { '^/api': '' },
+    changeOrigin: true
+  }
+}
 
 fastify.register((fastify, opts, next) => {
-  const app = Next({ dev })
+  const app = Next({dev, dir: '.'})
   app
     .prepare()
     .then(() => {
@@ -15,6 +23,12 @@ fastify.register((fastify, opts, next) => {
             reply.sent = true
           })
         })
+        if (devProxy) {
+          Object.keys(devProxy).forEach(function (context) {
+            fastify.use(proxyMiddleware(context, devProxy[context]))
+          })
+        }
+
       }
 
       fastify.get('/video', (req, reply) => {

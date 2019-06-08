@@ -93,6 +93,7 @@ module.exports = withPlugins([
       }
     },
     webpack(config, options) {
+      console.log('输出options', config.devServer)
       // console.log('输出webpack', config.output)
       // config.output = { ...config.output, globalObject: 'this',}
       // config.module.rules.push({
@@ -103,5 +104,11 @@ module.exports = withPlugins([
       //   ]
       // })
       return config
-    }
+    },
+    webpackDevMiddleware: config => {
+      console.log('输出dev',config)
+      // Perform customizations to webpack dev middleware config
+      // Important: return the modified config
+      return config
+    },
 })
