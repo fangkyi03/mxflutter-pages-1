@@ -35,9 +35,6 @@ class LoadingComponent extends Component {
   render() {
   	const {isShow} = this.state;
 	const { renderComponent,renderView, style,fetchData} = this.props;
-	// if (fetchData.isNetError) {
-	// 	return this.renderError()
-	// }
 	const renderViewComponent = renderView || renderComponent
 	return (
   		<div style={{display:'flex',flex:1,width:'100%',height:'100%',flexDirection:'column'}}>

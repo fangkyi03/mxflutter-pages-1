@@ -68,7 +68,6 @@ export default function getFetchData(fetchConfig) {
           // 这里保存最后需要合并的数据
           const ret = {};
           const keys = payload;
-          console.log('输出')
           yield put({
             type: 'setValue',
             payload: { isShow: true, netError: false },
@@ -116,7 +115,6 @@ export default function getFetchData(fetchConfig) {
               if (cancel) {
                 break;
               }
-              console.log('网络请求输出', retData);
               if (!timeout) {
                 const netData = onGLNetStart && onGLNetStart({ retData, ...extendAttr });
                 if (netData) {

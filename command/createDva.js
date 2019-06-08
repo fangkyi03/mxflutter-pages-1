@@ -4,7 +4,8 @@ import { Provider } from 'react-redux';
 import dva, { connect } from 'dva-no-router';
 import * as NetTools from './netTool';
 import fetch from '../models/fetch';
-import {message} from 'antd'
+
+// import {message} from 'antd'
 
 const checkServer = () => Object.prototype.toString.call(global.process) === '[object process]';
 
@@ -59,7 +60,7 @@ function createDvaStore(initialState, modelList) {
                 } else if (retData.status == 500 || retData.code == 500) {
                     //app._store.dispatch(routerRedux.push({ pathname: "/500" }));
                 } else {
-                    message.error(retData.msg || retData.message || errorText);
+                    // message.error(retData.msg || retData.message || errorText);
                 }
             },
             onGLNetCatch: ({ error }) => {
@@ -67,35 +68,20 @@ function createDvaStore(initialState, modelList) {
             },
         }),
     );
-    // const isArray = Array.isArray(model);
-    // if (isArray) {
-    //     model.forEach((m) => {
-    //         app.model(m);
-    //     });
-    // } else {
-    //     app.model(model);
-    // }
     app.router(() => { });
     app.start();
-    // console.log(app);
-    // eslint-disable-next-line
     const store = app._store
     return store;
 }
 
 function getOrCreateStore(initialState, modelList) {
     const isServer = checkServer();
-    if (isServer) { // run in server
-        // console.log('server');
+    if (isServer) { 
         return createDvaStore(initialState, modelList);
     }
-    // eslint-disable-next-line
     if (!window[__NEXT_DVA_STORE__]) {
-        // console.log('client');
-        // eslint-disable-next-line
         window[__NEXT_DVA_STORE__] = createDvaStore(initialState, modelList);
     }
-    // eslint-disable-next-line
     return window[__NEXT_DVA_STORE__];
 }
 
@@ -122,27 +108,22 @@ function createDva(modelList, { option = {} } = {}) {
             return this.props.modelList[0]
         }
 
-        getRouterInfo = () =>{
-            const {location = {}} = this.props
-            if (location.state) {
-                // localStorage.setItem(this.getModalName(), JSON.stringify(location.state));
-                return location.state
-            }else {
-                // return JSON.parse(localStorage.getItem(this.getModalName()));
-            }
+        getRouter = () =>{
+            const {router} = this.props
+            return router.query
         }
 
         render() {
             const { Component, modelList, ...arg } = this.props
             return (
-                <Component {...arg} modelList={modelList} routerData={this.getRouterInfo() || {}} />
+                <Component {...arg} modelList={modelList} routerParams={this.getRouter()} />
             )
         }
     }
 
     return (Component) => {
         const ComponentWithDva = (props = {}) => {
-            const { store, initialProps, initialState } = props;
+            const { store, initialProps, initialState,...arg } = props;
             const ComponentView = connect((state) => {
                 let obj = {}
                 modelList.forEach((e) => {
@@ -152,18 +133,13 @@ function createDva(modelList, { option = {} } = {}) {
             }, null, null, option)(DvaView)
             return React.createElement(
                 Provider,
-                // in client side, it will init store with the initial state tranfer from server side
-                { store: store && store.dispatch ? store : getOrCreateStore(initialState, modelList) },
-                // transfer next.js's props to the page
-                React.createElement(ComponentView, initialProps),
+                { store: store && store.dispatch ? store : getOrCreateStore(initialState, modelList)},
+                React.createElement(ComponentView, { ...initialProps, ...arg}),
             );
         };
         ComponentWithDva.getInitialProps = async (props = {}) => {
-            // console.log('get......');
             const isServer = checkServer();
             const store = getOrCreateStore(props.req, modelList);
-            // call children's getInitialProps
-            // get initProps and transfer in to the page
             const initialProps = Component.getInitialProps
                 ? await Component.getInitialProps({ ...props, isServer, store })
                 : {};

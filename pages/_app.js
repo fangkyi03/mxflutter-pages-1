@@ -10,10 +10,10 @@ import './app.less'
 class AppComponent extends React.Component {
 
     render() {
-        const { Component, pageProps } = this.props
+        const { Component, pageProps,...arg } = this.props
         return (
             <Container>
-                <Component {...pageProps} />
+                <Component {...pageProps} {...arg} />
             </Container>
         )
     }

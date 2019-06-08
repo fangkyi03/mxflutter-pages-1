@@ -4,6 +4,7 @@ import LoadingComponent from '../../components/LoadComponent';
 import createDva from '../../command/createDva';
 import apiTool from '../../command/apiTool';
 import Text from '../../components/Text/index';
+import Router from 'next/router'
 
 @createDva(['video'])
 export default class Video extends Component {
@@ -26,7 +27,8 @@ export default class Video extends Component {
 
   // 播放视频点击事件
   onPlayVideo = (url) =>{
-    console.log('输出window' + JSON.stringify(window.postMessageA))
+    alert(JSON.stringify(window.test))
+    // console.log('输出window' + JSON.stringify(window.postMessageA))
     // window.postMessage.postMessage(url.toString());
   }
 
@@ -58,9 +60,9 @@ export default class Video extends Component {
       <div className={styles.footProblemView}>
         <h4>如果依然无法解答您的疑问</h4>
         {
-          data.map((e)=>{
+          data.map((e,i)=>{
             return (
-              <div>{e}</div>
+              <div key={i}>{e}</div>
             )
           })
         }
@@ -79,7 +81,7 @@ export default class Video extends Component {
 
   renderView = () =>{
     return (
-      <div style={{flex:1,display:'flex',flexDirection:'column',maxHeight:'100%',overflow:'scroll'}}>
+      <div style={{flex:1,display:'flex',flexDirection:'column',maxHeight:'100%',overflow:'scroll',paddingBottom:20}}>
         {/* 渲染背景 */}
         {this.renderBkImage()}
         {/* 渲染列表 */}
@@ -88,13 +90,13 @@ export default class Video extends Component {
         {this.renderFootProblem()}
         {/* 尾页 */}
         {this.renderFoot()}
+        {/* <BackwardFill/> */}
       </div>
     )
   }
 
   render() {
     const {isShow} = this.props
-    console.log('输出props',this.props)
     return (
       <div className={styles.main}>
         <LoadingComponent
