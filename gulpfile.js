@@ -2,12 +2,12 @@ var gulp = require('gulp');
 var sftp = require('gulp-sftp');
 
 gulp.task('default', function () {
-  return gulp.src('./.next/**/*')
+  return gulp.src('./out/**/*')
     .pipe(sftp({
-      host: 'nongqibang.com',
-      port:2222,
+      host: '192.167.5.113',
+      port: 22,
       user: 'root',
       pass: 'ztesa2018!farm',
-      remotePath:'/var/cjy/farmTest/'
+      remotePath: '/var/jyz/h5web/'
     }));
 });

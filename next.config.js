@@ -20,9 +20,9 @@ const themeVariables = lessToJS(
 )
 
 // fix: prevents error when .less files are required by node
-if (typeof require !== 'undefined') {
-  require.extensions['.less'] = file => { }
-}
+// if (typeof require !== 'undefined') {
+//   require.extensions['.less'] = file => { }
+// }
 module.exports = withPlugins([
   [withBundleAnalyzer, {
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
@@ -43,7 +43,6 @@ module.exports = withPlugins([
     progressBar: {
       profile: true
     }
-    // rest of your next config
   }],
   [optimizedImages, {
     // these are the default values so you don't have to provide them if they are good enough for your use-case.
@@ -93,22 +92,14 @@ module.exports = withPlugins([
       }
     },
     webpack(config, options) {
-      console.log('输出options', config.devServer)
-      // console.log('输出webpack', config.output)
-      // config.output = { ...config.output, globalObject: 'this',}
-      // config.module.rules.push({
-      //   loader: 'webpack-ant-icon-loader',
-      //   enforce: 'pre',
-      //   include: [
-      //     require.resolve('@ant-design/icons/lib/dist')
-      //   ]
-      // })
-      return config
-    },
-    webpackDevMiddleware: config => {
-      console.log('输出dev',config)
-      // Perform customizations to webpack dev middleware config
-      // Important: return the modified config
+      config.output = { ...config.output, globalObject: 'this',}
+      config.module.rules.push({
+        loader: 'webpack-ant-icon-loader',
+        enforce: 'pre',
+        include: [
+          require.resolve('@ant-design/icons/lib/dist')
+        ]
+      })
       return config
     },
 })
