@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import dva, { connect } from 'dva-no-router';
 import * as NetTools from './netTool';
 import fetch from '../models/fetch';
+import apiTool from './apiTool';
 
 // import {message} from 'antd'
 
@@ -29,6 +30,9 @@ function createDvaStore(initialState, modelList) {
                 reducers: {
                     setValue(state,{payload}){
                         return {...state,...payload}
+                    },
+                    clear(state,{payload}){
+                        return {isShow:true}
                     }
                 },
                 effect: {},
@@ -100,7 +104,7 @@ function createDva(modelList, { option = {} } = {}) {
 
         componentWillUnmount() {
             if (this.props.isDestroy) {
-                api.clearList(this, this.props.modelList)
+                apiTool.clearList(this, this.props.modelList)
             }
         }
         

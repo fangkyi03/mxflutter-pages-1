@@ -29,11 +29,16 @@ fastify.register((fastify, opts, next) => {
             fastify.use(proxyMiddleware(context, devProxy[context]))
           })
         }
-
       }
 
       fastify.get('/video', (req, reply) => {
         return app.render(req.req, reply.res, '/video', req.query).then((e) => {
+          reply.sent = true
+        })
+      })
+
+      fastify.get('/my', (req, reply) => {
+        return app.render(req.req, reply.res, '/my', req.query).then((e) => {
           reply.sent = true
         })
       })
@@ -49,7 +54,6 @@ fastify.register((fastify, opts, next) => {
           reply.sent = true
         })
       })
-
       next()
     })
     .catch(err => next(err))

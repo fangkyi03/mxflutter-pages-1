@@ -10,41 +10,41 @@ import Router from 'next/router'
 export default class Video extends Component {
 
   componentDidMount() {
-    apiTool.send(this,[
+    apiTool.send(this, [
       {
-        url:'/official/web/officialWeb/listVideo',
-        method:'GET',
-        target:'video'
+        url: '/official/web/officialWeb/listVideo',
+        method: 'GET',
+        target: 'video'
       }
     ])
   }
 
-  renderBkImage = () =>{
+  renderBkImage = () => {
     return (
-      <img src={require('../../images/video/bgc.png')} className={styles.bkImage}/>
+      <img src={require('../../images/video/bgc.png')} className={styles.bkImage} />
     )
   }
 
   // 播放视频点击事件
-  onPlayVideo = (url) =>{
+  onPlayVideo = (url) => {
     alert(JSON.stringify(window.test))
     // console.log('输出window' + JSON.stringify(window.postMessageA))
     // window.postMessage.postMessage(url.toString());
   }
 
-  renderList = () =>{
-    const {data} = this.props
+  renderList = () => {
+    const { data } = this.props
     return (
       <div className={styles.listView}>
         {
-          data.map((e,i)=>{
+          data.map((e, i) => {
             return (
               <div key={i} className={styles.listItemView}>
-                <img src={e.videoPic}/>
+                <img src={e.videoPic} />
                 <div className={styles.listItemFoot}>
-                  <h4>{e.videoName}</h4>
+                  <div className={styles.listItemFootButton} onClick={() => this.onPlayVideo(e.url)}>点击播放</div>
                   <Text numLine={2}>{e.remark}</Text>
-                  <div className={styles.listItemFootButton} onClick={()=>this.onPlayVideo(e.url)}>点击播放</div>
+                  <h4>{e.videoName}</h4>
                 </div>
               </div>
             )
@@ -54,13 +54,13 @@ export default class Video extends Component {
     )
   }
 
-  renderFootProblem = () =>{
-    const data = ['请拨打电话：0574-55843501/189 5741 9012','工作时间：法定工作日9：00-18：00']
+  renderFootProblem = () => {
+    const data = ['请拨打电话：0574-55843501/189 5741 9012', '工作时间：法定工作日9：00-18：00']
     return (
       <div className={styles.footProblemView}>
         <h4>如果依然无法解答您的疑问</h4>
         {
-          data.map((e,i)=>{
+          data.map((e, i) => {
             return (
               <div key={i}>{e}</div>
             )
@@ -70,18 +70,33 @@ export default class Video extends Component {
     )
   }
 
-  renderFoot = () =>{
+  renderFoot = () => {
     return (
-      <div className={styles.footView}> 
+      <div className={styles.footView}>
         <div>技术支持:中兴惠农</div>
-        <a style={{ color:'rgba(253,160,15,1'}} href={'http://ztesa.com.cn'}>ztesa.com.cn</a>
+        <a style={{ color: 'rgba(253,160,15,1' }} href={'http://ztesa.com.cn'}>ztesa.com.cn</a>
       </div>
     )
   }
 
-  renderView = () =>{
+  onHeaderClick = () => {
+    Router.push('/my')
+  }
+
+  renderHeader = () => {
     return (
-      <div style={{flex:1,display:'flex',flexDirection:'column',maxHeight:'100%',overflow:'scroll',paddingBottom:20}}>
+      <div onClick={this.onHeaderClick}>
+        头部点击
+      </div>
+    )
+  }
+
+  renderView = () => {
+    const { isShowHeader } = this.props.routerParams
+    return (
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', maxHeight: '100%', overflow: 'scroll', paddingBottom: 20 }}>
+        {/* 渲染头部 */}
+        {this.renderHeader()}
         {/* 渲染背景 */}
         {this.renderBkImage()}
         {/* 渲染列表 */}
@@ -96,7 +111,7 @@ export default class Video extends Component {
   }
 
   render() {
-    const {isShow} = this.props
+    const { isShow } = this.props
     return (
       <div className={styles.main}>
         <LoadingComponent
