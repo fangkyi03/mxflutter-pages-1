@@ -73,7 +73,7 @@ module.exports = withPlugins([
       quality: 75,
     },
   }],
-  [withLess, {
+  [withLessExcludeAntd, {
     cssModules: true,
     cssLoaderOptions: {
       importLoaders: 1,

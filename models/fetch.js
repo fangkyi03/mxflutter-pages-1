@@ -68,6 +68,7 @@ export default function getFetchData(fetchConfig) {
           // 这里保存最后需要合并的数据
           const ret = {};
           const keys = payload;
+          console.log('输出')
           yield put({
             type: 'setValue',
             payload: { isShow: true, netError: false },

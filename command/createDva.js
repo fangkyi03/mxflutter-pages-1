@@ -11,7 +11,7 @@ const checkServer = () => Object.prototype.toString.call(global.process) === '[o
 // eslint-disable-next-line
 const __NEXT_DVA_STORE__ = '__NEXT_DVA_STORE__'
 
-function createDvaStore(initialState) {
+function createDvaStore(initialState, modelList) {
     let app;
     if (initialState) {
         app = dva({
@@ -19,6 +19,21 @@ function createDvaStore(initialState) {
         });
     } else {
         app = dva({});
+        modelList.forEach((e)=>{
+            app.model({
+                namespace: e,
+                state: {
+                    isShow: true,
+                },
+                reducers: {
+                    setValue(state,{payload}){
+                        return {...state,...payload}
+                    }
+                },
+                effect: {},
+                subscriptions: {},
+            })
+        })
     }
     app.model(
         fetch({
@@ -68,17 +83,17 @@ function createDvaStore(initialState) {
     return store;
 }
 
-function getOrCreateStore(initialState) {
+function getOrCreateStore(initialState, modelList) {
     const isServer = checkServer();
     if (isServer) { // run in server
         // console.log('server');
-        return createDvaStore(initialState);
+        return createDvaStore(initialState, modelList);
     }
     // eslint-disable-next-line
     if (!window[__NEXT_DVA_STORE__]) {
         // console.log('client');
         // eslint-disable-next-line
-        window[__NEXT_DVA_STORE__] = createDvaStore(initialState);
+        window[__NEXT_DVA_STORE__] = createDvaStore(initialState, modelList);
     }
     // eslint-disable-next-line
     return window[__NEXT_DVA_STORE__];
@@ -138,7 +153,7 @@ function createDva(modelList, { option = {} } = {}) {
             return React.createElement(
                 Provider,
                 // in client side, it will init store with the initial state tranfer from server side
-                { store: store && store.dispatch ? store : getOrCreateStore(initialState) },
+                { store: store && store.dispatch ? store : getOrCreateStore(initialState, modelList) },
                 // transfer next.js's props to the page
                 React.createElement(ComponentView, initialProps),
             );
@@ -146,7 +161,7 @@ function createDva(modelList, { option = {} } = {}) {
         ComponentWithDva.getInitialProps = async (props = {}) => {
             // console.log('get......');
             const isServer = checkServer();
-            const store = getOrCreateStore(props.req);
+            const store = getOrCreateStore(props.req, modelList);
             // call children's getInitialProps
             // get initProps and transfer in to the page
             const initialProps = Component.getInitialProps
