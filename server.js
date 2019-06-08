@@ -6,7 +6,8 @@ const dev = process.env.NODE_ENV !== 'production'
 const proxyMiddleware = require('http-proxy-middleware')
 const devProxy = {
   '/api': {
-    target: "http://182.61.13.115:7041",
+    target: "http://supe.nongqibang.com:7041",
+    // target: "http://182.61.13.115:7041",
     pathRewrite: { '^/api': '' },
     changeOrigin: true
   }

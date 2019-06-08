@@ -26,7 +26,8 @@ export default class Video extends Component {
 
   // 播放视频点击事件
   onPlayVideo = (url) =>{
-    window.postMessage(url.toString());
+    console.log('输出window' + JSON.stringify(window.postMessageA))
+    // window.postMessage.postMessage(url.toString());
   }
 
   renderList = () =>{

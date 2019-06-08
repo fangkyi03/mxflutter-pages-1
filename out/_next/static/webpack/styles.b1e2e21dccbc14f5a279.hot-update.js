@@ -1,4 +1,4 @@
-(this["webpackJsonp"] = this["webpackJsonp"] || []).push([["styles"],{
+webpackHotUpdate("styles",{
 
 /***/ "./components/Text/index.less":
 /*!************************************!*\
@@ -149,43 +149,6 @@ module.exports = {"numLine":"numLine___2QPC_"};;
 
 /***/ }),
 
-/***/ "./pages/app.less":
-/*!************************!*\
-  !*** ./pages/app.less ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin;
-    if (true) {
-      var injectCss = function injectCss(prev, href) {
-        var link = prev.cloneNode();
-        link.href = href;
-        link.onload = function() {
-          prev.parentNode.removeChild(prev);
-        };
-        prev.stale = true;
-        prev.parentNode.insertBefore(link, prev);
-      };
-      module.hot.dispose(function() {
-        window.__webpack_reload_css__ = true;
-      });
-      if (window.__webpack_reload_css__) {
-        module.hot.__webpack_reload_css__ = false;
-        console.log("[HMR] Reloading stylesheets...");
-        var prefix = document.location.protocol + '//' + document.location.host;
-        document
-          .querySelectorAll("link[href][rel=stylesheet]")
-          .forEach(function(link) {
-            if (!link.href.match(prefix) || link.stale) return;
-            injectCss(link, link.href.split("?")[0] + "?unix=1559975792408");
-          });
-      }
-    }
-  
-
-/***/ }),
-
 /***/ "./pages/video/index.less":
 /*!********************************!*\
   !*** ./pages/video/index.less ***!
@@ -224,5 +187,5 @@ module.exports = {"main":"main___2Nezc","bkImage":"bkImage___2unXa","listView":"
 
 /***/ })
 
-}]);
-//# sourceMappingURL=styles.js.map
+})
+//# sourceMappingURL=styles.b1e2e21dccbc14f5a279.hot-update.js.map
