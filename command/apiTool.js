@@ -15,8 +15,14 @@ export const clearList = function (thz, payload) {
     })
 }
 
+// 获取路由参数
+export const getRouterParams = function(thz) {
+    return thz.props.routerParams
+}
+
 export default {
     send,
     setValue,
-    clearList
+    clearList,
+    getRouterParams
 }

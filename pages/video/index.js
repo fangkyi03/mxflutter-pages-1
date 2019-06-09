@@ -21,13 +21,13 @@ export default class Video extends Component {
 
   renderBkImage = () => {
     return (
-      <img src={require('../../images/video/bgc.png')} className={styles.bkImage} />
+      <img src={require('../../images/video/bgc.png')} className={styles.bkImage}/>
     )
   }
 
   // 播放视频点击事件
   onPlayVideo = (url) => {
-    alert(JSON.stringify(window.test))
+    console.log('输出window',window.test.send('1'))
     // console.log('输出window' + JSON.stringify(window.postMessageA))
     // window.postMessage.postMessage(url.toString());
   }
@@ -35,21 +35,27 @@ export default class Video extends Component {
   renderList = () => {
     const { data } = this.props
     return (
-      <div className={styles.listView}>
-        {
-          data.map((e, i) => {
-            return (
-              <div key={i} className={styles.listItemView}>
-                <img src={e.videoPic} />
-                <div className={styles.listItemFoot}>
-                  <div className={styles.listItemFootButton} onClick={() => this.onPlayVideo(e.url)}>点击播放</div>
-                  <Text numLine={2}>{e.remark}</Text>
-                  <h4>{e.videoName}</h4>
+      <div style={{marginTop:-100}}>
+        <div className={styles.listView}>
+          {
+            data.map((e, i) => {
+              return (
+                <div key={i} className={styles.listItemView}>
+                  <img src={e.videoPic} />
+                  <div className={styles.listItemFoot}>
+                    <div className={styles.listItemFootButton} onClick={() => this.onPlayVideo(e.url)}>点击播放</div>
+                    <Text numLine={2}>{e.remark}</Text>
+                    <h4>{e.videoName}</h4>
+                  </div>
                 </div>
-              </div>
-            )
-          })
-        }
+              )
+            })
+          }
+        </div>
+        {/* 渲染底部说明 */}
+        {this.renderFootProblem()}
+        {/* 尾页 */}
+        {this.renderFoot()}
       </div>
     )
   }
@@ -80,38 +86,34 @@ export default class Video extends Component {
   }
 
   onHeaderClick = () => {
-    Router.push('/my')
+    Router.back()
   }
 
   renderHeader = () => {
     return (
-      <div onClick={this.onHeaderClick}>
-        头部点击
+      <div className={styles.headerView}>
+        操作指导
+        <div className={styles.headerLeft} onClick={this.onHeaderClick}>
+          <img src={require('../../images/video/箭头不可点击.png')} />
+        </div>
       </div>
     )
   }
 
   renderView = () => {
-    const { isShowHeader } = this.props.routerParams
     return (
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', maxHeight: '100%', overflow: 'scroll', paddingBottom: 20 }}>
-        {/* 渲染头部 */}
-        {this.renderHeader()}
-        {/* 渲染背景 */}
-        {this.renderBkImage()}
-        {/* 渲染列表 */}
-        {this.renderList()}
-        {/* 渲染底部说明 */}
-        {this.renderFootProblem()}
-        {/* 尾页 */}
-        {this.renderFoot()}
-        {/* <BackwardFill/> */}
-      </div>
+        <div style={{ flex: 1, display: 'flex',flexDirection: 'column',overflowY:'scroll',maxHeight:'100%'}}>
+          {/* 渲染背景 */}
+          {this.renderBkImage()}
+          {/* 渲染列表 */}
+          {this.renderList()}
+        </div>
     )
   }
 
   render() {
     const { isShow } = this.props
+    const { isShowHeader } = this.props.routerParams
     return (
       <div className={styles.main}>
         <LoadingComponent
