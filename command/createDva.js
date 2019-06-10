@@ -5,8 +5,7 @@ import dva, { connect } from 'dva-no-router';
 import * as NetTools from './netTool';
 import fetch from '../models/fetch';
 import apiTool from './apiTool';
-
-// import {message} from 'antd'
+import {message} from 'antd'
 
 const checkServer = () => Object.prototype.toString.call(global.process) === '[object process]';
 
@@ -64,7 +63,7 @@ function createDvaStore(initialState, modelList) {
                 } else if (retData.status == 500 || retData.code == 500) {
                     //app._store.dispatch(routerRedux.push({ pathname: "/500" }));
                 } else {
-                    // message.error(retData.msg || retData.message || errorText);
+                    message.error(retData.msg || retData.message || errorText);
                 }
             },
             onGLNetCatch: ({ error }) => {
@@ -113,14 +112,28 @@ function createDva(modelList, { option = {} } = {}) {
         }
 
         getRouter = () =>{
-            const {router} = this.props
-            return router.query
+            const { router } = this.props
+            if (typeof window == 'object') {
+                if (window.location.search.indexOf('?') !== -1) {
+                    const obj = {}
+                    const searchArr = window.location.search.split('?')[1].split("&")
+                    searchArr.forEach((e,index)=>{
+                        const splitArr = e.split('=')
+                        obj[splitArr[0]] = splitArr[1]
+                    })
+                    return obj
+                }else {
+                    return {}
+                }
+            }else {
+                return router.query
+            }
         }
 
         render() {
             const { Component, modelList, ...arg } = this.props
             return (
-                <Component {...arg} modelList={modelList} routerParams={this.getRouter()} />
+                <Component {...arg} modelList={modelList} routerParams={this.getRouter(arg)} />
             )
         }
     }

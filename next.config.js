@@ -8,6 +8,7 @@ const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const withProgressBar = require('next-progressbar')
 const withInferno = require('next-inferno')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const withPreact = require('@zeit/next-preact')
 
 const withLessExcludeAntd = require("./next-less.config.js")
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({ enabled: process.env.ANALYZE === "true" });
@@ -39,7 +40,7 @@ module.exports = withPlugins([
       }
     }
   }],
-  [CleanWebpackPlugin, ["out",'.next']],
+  [CleanWebpackPlugin, ["out", '.next']],
   [withSize, {}],
   [withProgressBar, {
     progressBar: {
