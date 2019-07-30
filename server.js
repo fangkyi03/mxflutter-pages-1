@@ -1,20 +1,28 @@
 // require('next-inferno/alias')()
 const fastify = require('fastify')({ logger: { level: 'error' } })
 const Next = require('next')
-const port = parseInt(process.env.PORT, 10) || 3010
+const port = parseInt(process.env.PORT, 10) || 3011
 const dev = process.env.NODE_ENV !== 'production'
 const proxyMiddleware = require('http-proxy-middleware')
+const getPageFile = require('./utils/getPageFile')
 const devProxy = {
   '/api': {
-    target: "http://supe.nongqibang.com:7041",
-    // target: "http://182.61.13.115:7041",
+    // target:'http://api.ztesa.com.cn:7041',
+    target: "http://192.167.5.212:7041",
+    // target: "http://192.167.5.113:3000",
     pathRewrite: { '^/api': '' },
-    changeOrigin: true
+    changeOrigin: true,
+  },
+  '/getToken': {
+    target: "http://127.0.0.1:3001",
+    // target: "http://192.167.5.113:3000",
+    // pathRewrite: { '^/getToken': '' },
+    changeOrigin: true,
   }
 }
 
 fastify.register((fastify, opts, next) => {
-  const app = Next({dev, dir: '.'})
+  const app = Next({ dev, dir: '.' })
   app
     .prepare()
     .then(() => {
@@ -31,15 +39,11 @@ fastify.register((fastify, opts, next) => {
         }
       }
 
-      fastify.get('/video', (req, reply) => {
-        return app.render(req.req, reply.res, '/video', req.query).then((e) => {
-          reply.sent = true
-        })
-      })
-
-      fastify.get('/my', (req, reply) => {
-        return app.render(req.req, reply.res, '/my', req.query).then((e) => {
-          reply.sent = true
+      getPageFile.forEach((e) => {
+        fastify.get('/' + e, (req, reply) => {
+          return app.render(req.req, reply.res, '/' + e, req.query).then((e) => {
+            reply.sent = true
+          })
         })
       })
 
@@ -59,7 +63,7 @@ fastify.register((fastify, opts, next) => {
     .catch(err => next(err))
 })
 
-fastify.listen(port,'0.0.0.0',err => {
+fastify.listen(port, '0.0.0.0', err => {
   if (err) throw err
   console.log(`> Ready on http://localhost:${port}`)
 })

@@ -1,5 +1,6 @@
 /* eslint-disable */
 const withLess = require('@zeit/next-less')
+const withCSS = require('@zeit/next-css')
 const lessToJS = require('less-vars-to-js')
 const withImage = require('next-images')
 const withPlugins = require('next-compose-plugins');
@@ -9,22 +10,27 @@ const withProgressBar = require('next-progressbar')
 const withInferno = require('next-inferno')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const withPreact = require('@zeit/next-preact')
-
+const webpack = require('webpack');
 const withLessExcludeAntd = require("./next-less.config.js")
-// const withBundleAnalyzer = require("@next/bundle-analyzer")({ enabled: process.env.ANALYZE === "true" });
+const CompressionPlugin = require('compression-webpack-plugin')
 const withSize = require('next-size')
 const fs = require('fs')
 const path = require('path')
-
-// Where your antd-custom.less file lives
+const getPageFile = require('./utils/getPageFile')
+const withOffline = require('next-offline')
 const themeVariables = lessToJS(
   fs.readFileSync(path.resolve(__dirname, './assets/antd-custom.less'), 'utf8')
 )
 
 // fix: prevents error when .less files are required by node
-// if (typeof require !== 'undefined') {
-//   require.extensions['.less'] = file => { }
-// }
+if (typeof require !== 'undefined') {
+  require.extensions['.less'] = file => { }
+}
+if (typeof require !== 'undefined') {
+  // eslint-disable-next-line
+  require.extensions['.css'] = file => { }
+}
+
 module.exports = withPlugins([
   [withBundleAnalyzer, {
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
@@ -57,12 +63,14 @@ module.exports = withPlugins([
     optimizeImages: true,
     optimizeImagesInDev: false,
     mozjpeg: {
-      quality: 80,
+      quality: 50,
     },
     optipng: {
       optimizationLevel: 3,
     },
-    pngquant: false,
+    pngquant: {
+      quality: [0.3, 0.5]
+    },
     gifsicle: {
       interlaced: true,
       optimizationLevel: 3,
@@ -75,11 +83,12 @@ module.exports = withPlugins([
       quality: 75,
     },
   }],
+  [withCSS],
   [withLessExcludeAntd, {
     cssModules: true,
     cssLoaderOptions: {
       importLoaders: 1,
-      localIdentName: "[local]___[hash:base64:5]",
+      localIdentName: "[path]__[local]___[hash:base64:5]",
     },
     lessLoaderOptions: {
       javascriptEnabled: true,
@@ -87,22 +96,27 @@ module.exports = withPlugins([
       cssModules: true
     }
   }],
-  // [withInferno,{}],
-],{
+  [withOffline]
+  // [withPreact,{}],
+], {
     exportPathMap: function () {
-      return {
-        '/video': { page: '/video' }
-      }
+      const obj = {}
+      getPageFile.forEach((e) => {
+        obj['/' + e] = { page: '/' + e }
+      })
+      return obj;
     },
     webpack(config, options) {
-      config.output = { ...config.output, globalObject: 'this',}
-      config.module.rules.push({
-        loader: 'webpack-ant-icon-loader',
-        enforce: 'pre',
-        include: [
-          require.resolve('@ant-design/icons/lib/dist')
-        ]
-      })
+      config.output = { ...config.output, globalObject: 'this', }
+      config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
+      config.plugins.push(new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/))
+      config.plugins.push(new CleanWebpackPlugin(['out', '.next']))
+      config.plugins.push(new CompressionPlugin({
+        test: /\.js(\?.*)?$/i,
+        algorithm: 'gzip',
+        threshold: 8192,
+        compressionOptions: { level: 9 },
+      }))
       return config
     },
-})
+  })
