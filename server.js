@@ -6,8 +6,8 @@ const dev = process.env.NODE_ENV !== 'production'
 const proxyMiddleware = require('http-proxy-middleware')
 const devProxy = {
   '/api': {
-    // target: "http://supe.nongqibang.com:7041",
-    target: "http://182.61.13.115:7041",
+    target: "http://supe.nongqibang.com:7041",
+    // target: "http://182.61.13.115:7041",
     pathRewrite: { '^/api': '' },
     changeOrigin: true
   }
@@ -59,7 +59,7 @@ fastify.register((fastify, opts, next) => {
     .catch(err => next(err))
 })
 
-fastify.listen(port, err => {
+fastify.listen(port,'0.0.0.0',err => {
   if (err) throw err
   console.log(`> Ready on http://localhost:${port}`)
 })
