@@ -20,9 +20,15 @@ export const getRouterParams = function(thz) {
     return thz.props.routerParams
 }
 
+// 获取vw尺寸
+export const getSize = function(size ) {
+    return size  / 7.5 + 'vw'
+}
+
 export default {
     send,
     setValue,
     clearList,
-    getRouterParams
+    getRouterParams,
+    getSize
 }
