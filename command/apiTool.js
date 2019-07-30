@@ -22,7 +22,7 @@ export const getRouterParams = function(thz) {
 
 // 获取vw尺寸
 export const getSize = function(size ) {
-    return size  / 7.5 + 'vw'
+    return size  / 19.2 + 'vw'
 }
 
 export default {
