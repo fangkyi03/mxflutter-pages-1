@@ -8,7 +8,7 @@ const getPageFile = require('./utils/getPageFile')
 const devProxy = {
   '/api': {
     // target:'http://api.ztesa.com.cn:7041',
-    target: "http://192.167.5.212:7041",
+    target: "http://nongqibang.com:7041",
     // target: "http://192.167.5.113:3000",
     pathRewrite: { '^/api': '' },
     changeOrigin: true,
