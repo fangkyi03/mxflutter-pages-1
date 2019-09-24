@@ -1,8 +1,5 @@
 module.exports = {
     "plugins": {
-        'autoprefixer':{
-            browsers: ['> 0%', 'Android 2.3', 'iOS 3.2', 'Safari 3.1', 'IE 10']
-        },
         "postcss-px-to-viewport": {
             viewportWidth: 1920,     // (Number) The width of the viewport.
             viewportHeight: 1080,    // (Number) The height of the viewport.
