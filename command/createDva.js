@@ -103,7 +103,7 @@ function createDva(modelList, { option = {} } = {}) {
         componentWillUnmount() {
             if (this.props.isDestroy) {
                 // apiTool.clearList(this, this.props.modelList)
-                if (this.props.modelList.lengtth > 0) {
+                if (this.props.modelList.length > 0) {
                     apiTool.clearForm(this, this.props.modelList[0])
                 }
             }
@@ -129,26 +129,15 @@ function createDva(modelList, { option = {} } = {}) {
                 modelList.forEach((e) => {
                     obj = { ...obj, ...state[e] }
                 })
-                return { ...obj, NewComponent: Component, modelList }
-            }, null, null, option)(DvaView)
+                return { ...obj, modelList }
+            }, null, null, option)((props) => <DvaView NewComponent={Component} {...props} />)
             return React.createElement(
                 Provider,
                 { store: getOrCreateStore(initialState, modelList) },
                 React.createElement(ComponentView, { ...initialProps, ...arg }),
             );
         };
-        ComponentWithDva.getInitialProps = async (props = {}) => {
-            const isServer = checkServer();
-            const store = getOrCreateStore(props.req, modelList);
-            const initialProps = Component.getInitialProps
-                ? await Component.getInitialProps({ ...props, isServer, store })
-                : {};
-            return {
-                store,
-                initialProps,
-                initialState: store.getState(),
-            };
-        };
+
         return ComponentWithDva;
     }
 }
