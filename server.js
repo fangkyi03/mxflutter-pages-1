@@ -1,7 +1,7 @@
 // require('next-inferno/alias')()
 const fastify = require('fastify')({ logger: { level: 'error' } })
 const Next = require('next')
-const port = parseInt(process.env.PORT, 10) || 3011
+const port = parseInt(process.env.PORT, 10) || 3014
 const dev = process.env.NODE_ENV !== 'production'
 const proxyMiddleware = require('http-proxy-middleware')
 const getPageFile = require('./utils/getPageFile')
