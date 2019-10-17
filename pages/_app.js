@@ -6,6 +6,7 @@
 import { Container } from 'next/app'
 import React from 'react'
 import './app.less'
+import Header from 'next/head'
 
 class AppComponent extends React.Component {
 
@@ -13,6 +14,9 @@ class AppComponent extends React.Component {
         const { Component, pageProps,...arg } = this.props
         return (
             <Container>
+                <Header>
+                    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1, minimum-scale=1" />
+                </Header>
                 <Component {...pageProps} {...arg} />
             </Container>
         )

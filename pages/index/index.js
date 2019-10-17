@@ -95,7 +95,7 @@ export default class Index extends Component {
     return (
         <div className={styles.icon}>
             <img src={require(`../../images/Index/${item.icon}.png`)} className={styles.iconImage}/>
-            <div>{item.name}</div>
+            <div style={{fontSize:apiTool.getSize(28)}}>{item.name}</div>
         </div>
     )
   }
@@ -103,12 +103,14 @@ export default class Index extends Component {
   renderIconGroup = () => {
     const {icon} = this.props
     return (
-        <div className={styles.iconGroup}>
-            {
-                icon.map((e)=>{
-                    return this.renderIcon(e)
-                })
-            }
+        <div>
+            <div className={styles.iconGroup}>
+                {
+                    icon.map((e) => {
+                        return this.renderIcon(e)
+                    })
+                }
+            </div>
         </div>
     )
   }
@@ -156,7 +158,7 @@ export default class Index extends Component {
     ]
     return (
         <div className={styles.cardTitle}>
-            <div>{item.title}</div>
+            <div style={{fontSize:apiTool.getSize(28),color:'#333333'}}>{item.title}</div>
             {/* 卡片标题右边图标 */}
             {this.renderCardTitleIcon(data)}
         </div>
@@ -255,7 +257,7 @@ export default class Index extends Component {
     return (
         <div className={styles.cardGroup}>
             {
-                card.map((e)=>{
+                card.map((e) => {
                     return this.renderCard(e)
                 })
             }
