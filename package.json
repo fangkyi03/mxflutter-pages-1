@@ -49,6 +49,7 @@
     "react-cookies": "^0.1.0",
     "react-dom": "^16.8.4",
     "responsive-loader": "^1.2.0",
+    "screenfull": "^5.0.0",
     "stylus": "^0.54.5",
     "svg-sprite-loader": "^4.1.6",
     "swiper": "^4.4.6",

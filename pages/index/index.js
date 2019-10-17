@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styles from './index.less'
 import apiTool from '../../command/apiTool';
+import Header from '../../components/Header';
 
 export default class Index extends Component {
  
@@ -42,20 +43,20 @@ export default class Index extends Component {
     ]
   }
 
-  constructor(props) {
-      super(props);
-      this.state = {
-        isShowModal:false
-      }
+  onMenuDown = () => {
+    this.setState({isShowMenu:!this.state.isShowMenu})
   }
-  
+
   renderSlogan = () => {
     return (
         <div className={styles.slogan}>
             <img src={require('../../images/Index/logo.png')} style={{width:apiTool.getSize(231),height:apiTool.getSize(61)}}/>
             <div style={{display:'flex',alignItems:'center'}}>
                 <img src={require('../../images/Index/slogan.png')} style={{width:apiTool.getSize(265),height:apiTool.getSize(26)}}/>
-                <img src={require('../../images/Index/menu.png')} style={{width:apiTool.getSize(40),height:apiTool.getSize(40),marginLeft:apiTool.getSize(22)}}/>
+                <img 
+                    onClick={this.onMenuDown}
+                    src={require('../../images/Index/menu.png')} style={{width:apiTool.getSize(40),height:apiTool.getSize(40),marginLeft:apiTool.getSize(22)}}    
+                />
             </div>
         </div>
     )
@@ -136,7 +137,7 @@ export default class Index extends Component {
                     return (
                         <div style={{display:'flex',alignItems:'center',marginLeft:apiTool.getSize(20)}}>
                             <img src={require(`../../images/Index/${e.icon}.png`)} style={{width:apiTool.getSize(30),height:apiTool.getSize(30)}}/>
-                            <div style={{marginLeft:apiTool.getSize(10)}}>{e.name}</div>
+                            <div style={{marginLeft:apiTool.getSize(10),fontSize:apiTool.getSize(24)}}>{e.name}</div>
                         </div>
                     )
                 })
@@ -283,7 +284,7 @@ export default class Index extends Component {
                     return (
                         <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',marginTop:i?apiTool.getSize(10):0}}>
                             <img src={require(`../../images/Index/${e.icon}.png`)} style={{width:apiTool.getSize(46),height:apiTool.getSize(46)}}/>
-                            <div style={{color:'white'}}>{e.name}</div>
+                            <div style={{color:'white',fontSize:apiTool.getSize(26)}}>{e.name}</div>
                         </div>
                     )
                 })
@@ -292,11 +293,20 @@ export default class Index extends Component {
     )
   }
 
+  renderMenu = () => {
+    return (
+        <div className={styles.menu}>
+    
+        </div>
+    )
+  }
+
   render() {
     return (
       <div className={styles.main}>
         {/* 标语 */}
-        {this.renderSlogan()}
+        <Header/>
+        {/* {this.renderSlogan()} */}
         {/* 头部背景 */}
         {this.renderHeader()}
         {/* 内部页面 */}
