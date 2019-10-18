@@ -8,18 +8,32 @@ export default class FormSelect extends Component {
       super(props);
       this.state = {
           isShowModal:false,
+          select:-1,
           modalList:[]
       }
   }
   
+  onSelectDown = (index) => {
+    this.setState({select:index},()=>{
+        this.setState({
+            isShowModal:false
+        })
+    })
+  }
+
   renderModal = () => {
     const {modalList} = this.state
     return (
         <div className={styles.modal}>
             <div style={{maxHeight:apiTool.getSize(400),overflow:'scroll',borderRadius:apiTool.getSize(10)}}>
-                {modalList.map((e) => {
+                {modalList.map((e,i) => {
+                    const isSelect = i == this.state.select 
                     return (
-                        <div className={styles.modalListItem}>
+                        <div 
+                            onClick={()=>this.onSelectDown(i)}
+                            style={{ color: isSelect ? '#2CC76C' : '#666666'}}
+                            className={styles.modalListItem}
+                        >
                             {e.name}
                         </div>
                     )
