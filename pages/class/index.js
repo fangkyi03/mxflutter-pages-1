@@ -140,27 +140,25 @@ export default class Class extends Component {
 
   renderRightTop = (topData) => {
     return (
-      <div>
-        <div className={styles.rightTop}>
-          {
-            topData.map((e, i) => {
-              const isSelect = i == this.state.topSelect
-              return (
-                <div
-                  onClick={() => this.onTopDown(i)}
-                  className={isSelect ? styles.focusTopItem : styles.topItem}
-                >
-                  {e.name}
-                </div>
-              )
-            })
-          }
-          <img
-            src={require('../../images/Class/bottom.png')}
-            className={styles.xialaIconButton}
-            onClick={this.onXiaLaDown}
-          />
-        </div>
+      <div className={styles.rightTop}>
+        {
+          topData.map((e, i) => {
+            const isSelect = i == this.state.topSelect
+            return (
+              <div
+                onClick={() => this.onTopDown(i)}
+                className={isSelect ? styles.focusTopItem : styles.topItem}
+              >
+                {e.name}
+              </div>
+            )
+          })
+        }
+        <img
+          src={require('../../images/Class/bottom.png')}
+          className={styles.xialaIconButton}
+          onClick={this.onXiaLaDown}
+        />
       </div>
     )
   }
@@ -173,7 +171,7 @@ export default class Class extends Component {
 
   renderList = (list) => {
     return (
-      <div style={{overflow:'hidden',overflowY:'scroll'}}>
+      <div style={{position:'relative',display:'flex',flex:1}}>
         <ListPage
           data={list}
           renderItem={this.renderItem}
