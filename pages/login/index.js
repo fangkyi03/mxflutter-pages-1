@@ -139,19 +139,21 @@ export default class Login extends Component {
 
   renderForm = () => {
     return (
-        <div className={styles.form}>
-            {/* 账号登录 */}
-            {this.renderFormHeader()}
-            {/* 手机号 */}
-            {this.renderUserName()}
-            {/* 验证码 */}
-            {this.renderVerificationCode()}
-            {/* 确认验证码 */}
-            {this.renderConfirmVerificationCode()}
-            {/* 登录注册 */}
-            {this.renderLoginButton()}
-            {/* 第三方登录 */}
-            {this.renderOtherLogin()}
+        <div style={{display:'flex',flex:1,flexDirection:'column',justifyContent:'center'}}>
+            <div className={styles.form}>
+                {/* 账号登录 */}
+                {this.renderFormHeader()}
+                {/* 手机号 */}
+                {this.renderUserName()}
+                {/* 验证码 */}
+                {this.renderVerificationCode()}
+                {/* 确认验证码 */}
+                {this.renderConfirmVerificationCode()}
+                {/* 登录注册 */}
+                {this.renderLoginButton()}
+                {/* 第三方登录 */}
+                {this.renderOtherLogin()}
+            </div>
         </div>
     )
   }
