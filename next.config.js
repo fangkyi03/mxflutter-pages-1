@@ -96,27 +96,29 @@ module.exports = withPlugins([
       cssModules: true
     }
   }],
-  [withOffline]
+  [withOffline, {
+
+  }]
   // [withPreact,{}],
 ], {
-    exportPathMap: function () {
-      const obj = {}
-      getPageFile.forEach((e) => {
-        obj['/' + e] = { page: '/' + e }
-      })
-      return obj;
-    },
-    webpack(config, options) {
-      config.output = { ...config.output, globalObject: 'this', }
-      config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
-      config.plugins.push(new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/))
-      config.plugins.push(new CleanWebpackPlugin(['out', '.next']))
-      config.plugins.push(new CompressionPlugin({
-        test: /\.js(\?.*)?$/i,
-        algorithm: 'gzip',
-        threshold: 8192,
-        compressionOptions: { level: 9 },
-      }))
-      return config
-    },
-  })
+  exportPathMap: function () {
+    const obj = {}
+    getPageFile.forEach((e) => {
+      obj['/' + e] = { page: '/' + e }
+    })
+    return obj;
+  },
+  webpack(config, options) {
+    config.output = { ...config.output, globalObject: 'this', }
+    config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
+    config.plugins.push(new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/))
+    config.plugins.push(new CleanWebpackPlugin(['out', '.next']))
+    config.plugins.push(new CompressionPlugin({
+      test: /\.js(\?.*)?$/i,
+      algorithm: 'gzip',
+      threshold: 8192,
+      compressionOptions: { level: 9 },
+    }))
+    return config
+  },
+})

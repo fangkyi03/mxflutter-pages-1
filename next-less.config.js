@@ -16,7 +16,7 @@ module.exports = (nextConfig = {}) => {
                 lessLoaderOptions = {}
             } = nextConfig
             if (isServer) {
-                const antStyles = /antd\/.*?\/style.*?/
+                const antStyles = /antd-mobile\/.*?\/style.*?/
                 const origExternals = [...config.externals]
                 config.externals = [
                     (context, request, callback) => {
@@ -34,6 +34,25 @@ module.exports = (nextConfig = {}) => {
                     test: antStyles,
                     use: 'null-loader',
                 })
+
+                // const antdStyles = /antd\/.*?\/style.*?/
+                // const antdOrigExternals = [...config.externals]
+                // config.externals = [
+                //     (context, request, callback) => {
+                //         if (request.match(antdStyles)) return callback()
+                //         if (typeof antdOrigExternals[0] === 'function') {
+                //             antdOrigExternals[0](context, request, callback)
+                //         } else {
+                //             callback()
+                //         }
+                //     },
+                //     ...(typeof antdOrigExternals[0] === 'function' ? [] : antdOrigExternals),
+                // ]
+
+                // config.module.rules.unshift({
+                //     test: antdStyles,
+                //     use: 'null-loader',
+                // })
             }
             options.defaultLoaders.less = cssLoaderConfig(config, {
                 extensions: ['less'],

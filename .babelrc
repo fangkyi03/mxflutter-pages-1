@@ -1,10 +1,17 @@
 {
-  "presets": ["next/babel"],
+  "presets": [
+    [
+      "next/babel",
+      {
+        "useBuiltIns": "usage",
+      }
+    ]
+  ],
   "plugins": [
     [
-      "import", {
-        "libraryName": "antd",
-        "libraryDirectory": "lib",
+      "import",
+      {
+        "libraryName": "antd-mobile",
         "style": true
       }
     ],
