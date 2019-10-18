@@ -65,13 +65,21 @@ class AppComponent extends React.Component {
         }
     }
 
+    renderOther = () => {
+        const {Component} = this.props
+        const params = this.getPageParams()
+        return (
+            <Component {...params} />
+        )
+    }
+
     renderView = () => {
         const routerType = this.getRouterType()
         switch (routerType) {
             case 'tabBar':
                 return this.renderTabBar()
             default:
-                return this.renderTabBar()
+                return this.renderOther()
         }
     }
     
