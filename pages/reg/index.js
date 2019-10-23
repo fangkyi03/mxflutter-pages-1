@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import styles from './index.less'
-import apiTool from '../../command/apiTool';
-import FormSelect from '../../components/FormSelect';
+import FormView from '../../components/FormView';
 
 export default class Reg extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
-          setp:1,
+          setp:0,
           isShowSelectModal:false,
           typeData:[]
       }
@@ -26,7 +25,13 @@ export default class Reg extends Component {
     return [
         {
             'name':'身份',
+            'key':'a1',
             'type':'select',
+            'rule':[
+                {
+                    'required':true
+                }
+            ],
             'typeData':[
                 {
                     'name':'测试1',
@@ -39,10 +44,22 @@ export default class Reg extends Component {
             ]
         },
         {
-            'name':'姓名'
+            'name':'姓名',
+            'key': 'a2',
+            'rule': [
+                {
+                    'required': true
+                }
+            ],
         },
         {
-            'name':'联系手机'
+            'name':'联系手机',
+            'key': 'a3',
+            'rule': [
+                {
+                    'required': true
+                }
+            ]
         },
         {
             'name':'采购商品',
@@ -95,36 +112,6 @@ export default class Reg extends Component {
     )
   }
 
-  renderLabel = (item) => {
-    return (Component)=> {
-        return (
-            <div className={styles.label}>
-                <div style={{minWidth:apiTool.getSize(150),fontSize: apiTool.getSize(28), color:'#666666'}}>{item.name}</div>
-                <div style={{display:'flex',flex:1}}>
-                    {Component}
-                </div>
-            </div>
-        )
-    }
-  }
-
-  renderInput = (item) =>{ 
-    return (
-        <input placeholder={`请输入${item.name}`}/>
-    )
-  }
-
-  renderCode = (item) => {
-    return (
-        <div className={styles.codeView}>
-            {this.renderInput(item)}
-            <div className={styles.normalCode}>
-                获取验证码
-            </div>
-        </div>
-    )
-  }
-
   setModalType = (typeData) => {
     this.setState({
         isShowSelectModal:true,
@@ -132,54 +119,20 @@ export default class Reg extends Component {
     })
   }
 
-  renderSelect = (item) => {
-    return <FormSelect data={item} />
-  }
-
-  renderCheckBox = (item) => {
-    return (
-        <div style={{display:'flex',alignItems:'center'}}>
-            {
-                item.typeData.map((e)=>{
-                    return (
-                        <div style={{display:"flex",alignItems:'center',marginRight:apiTool.getSize(150)}}> 
-                            <img 
-                                src={require('../../images/Class//selectCheck.png')}
-                                style={{width:apiTool.getSize(32),height:apiTool.getSize(32)}}    
-                            />
-                            <div style={{ marginLeft:apiTool.getSize(20),fontSize: apiTool.getSize(26), color:'#333333'}}>{e.name}</div>
-                        </div>
-                    )
-                })
-            }
-        </div>
-    )
-  }
-
-  renderFormView = (item) => {
-    switch (item.type) {
-        case 'input':
-            return  this.renderInput(item)
-        case 'code':
-            return this.renderCode(item)
-        case 'select':
-            return this.renderSelect(item)
-        case 'checkBox':
-            return this.renderCheckBox(item)
-        default:
-            return this.renderInput(item)
-    }
-  }
-
   renderFormCard = () => {
     const form = this.formData[this.state.setp]
     return (
-        <div className={styles.formCard}>
-            {form.map((e)=>{
-                return this.renderLabel(e)(this.renderFormView(e))
-            })}
-        </div>
+        <FormView
+            data={form}
+        />
     )
+    // return (
+    //     <div className={styles.formCard}>
+    //         {form.map((e)=>{
+    //             return this.renderLabel(e)(this.renderFormView(e))
+    //         })}
+    //     </div>
+    // )
   }
 
   onNextDown = () => {
