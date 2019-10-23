@@ -4,6 +4,16 @@ import apiTool from '../../command/apiTool'
 
 export default class Login extends Component {
 
+  constructor(props) {
+      super(props);
+      this.state = {
+        formData:{
+            'mobile':'',
+            'numberCode':'',
+            'code':''
+        }
+      }
+  }
   
   renderLogo = () => {
     return (
@@ -19,11 +29,17 @@ export default class Login extends Component {
     )
   }
 
+  onInputChange = (key,e)=>{
+      console.log('输出target', e.currentTarget.value)
+    this.state.formData[key] = e.currentTarget.value
+    this.forceUpdate()
+  }
+
   renderUserName = () => {
     return (
         <div className={styles.userName}>
             <img src={require('../../images/Login/mobile.png')}/>
-            <input placeholder={'请输入手机号'}/>
+            <input placeholder={'请输入手机号'} onChange={(e)=>this.onInputChange('mobile',e)} value={this.state.formData['mobile']}/>
         </div>
     )
   }
@@ -35,7 +51,7 @@ export default class Login extends Component {
             <div style={{display:"flex",flex:1,flexDirection:'row-reverse'}}>
                 <div style={{background:'red'}}>验证码</div>
                 <div style={{display:'flex',flex:1}}>
-                    <input placeholder={'请输入右图中数字'} />
+                    <input placeholder={'请输入右图中数字'} onChange={(e)=>this.onInputChange('numberCode',e)} value={this.state.formData['numberCode']}/>
                 </div>
             </div>
         </div>
@@ -49,18 +65,29 @@ export default class Login extends Component {
             <div style={{ display: "flex", flex: 1, flexDirection: 'row-reverse' }}>
                 <div style={{ background: 'red',width:apiTool.getSize(163),height:apiTool.getSize(59) }}>获取验证码</div>
                 <div style={{ display: 'flex', flex: 1 }}>
-                    <input placeholder={'请输入右图中数字'} />
+                    <input placeholder={'请输入右图中数字'} onChange={(e)=>this.onInputChange('code',e)} value={this.state.formData['code']}/>
                 </div>
             </div>
         </div>
     )
   }
 
+  getFormState = () => {
+    const formData = this.state.formData
+    if (formData['code'] && formData['mobile'] && formData['numberCode']) {
+        return true
+    }else {
+        return false
+    }
+  }
+
   renderLoginButton = () => {
+    const formState = this.getFormState()
+    console.log('输出表单状态',formState)
     const data = [
         {
             'name':'登录',
-            'bkColor':'#D7D7D7',
+            'bkColor': formState ? '#2BC66C': '#D7D7D7',
             'txtColor':'white',
             'borderColor':'#D7D7D7'
         },
