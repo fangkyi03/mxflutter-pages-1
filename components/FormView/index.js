@@ -3,6 +3,8 @@ import styles from './index.less'
 import apiTool from '../../command/apiTool'
 import FormCode from '../FormCode'
 import FormSelect from '../FormSelect'
+import FormInputLabel from '../FormInputLabel'
+import FormArea from '../FormArea'
 
 export default class FormView extends Component {
 
@@ -65,6 +67,14 @@ export default class FormView extends Component {
     return <FormCode data={item}/>
   }
 
+  renderInputLabel = (item) =>  {
+    return <FormInputLabel data={item} />
+  }
+
+  renderArea = (item) => {
+    return <FormArea data={item}/>
+  }
+
   renderFormView = (item) => {
     switch (item.type) {
       case 'input':
@@ -75,6 +85,10 @@ export default class FormView extends Component {
         return this.renderSelect(item)
       case 'checkBox':
         return this.renderCheckBox(item)
+      case 'inputLabel':
+        return this.renderInputLabel(item)
+      case 'area':
+        return this.renderArea(item)
       default:
         return this.renderInput(item)
     }

@@ -7,7 +7,7 @@ export default class Reg extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          setp:0,
+          setp:1,
           isShowSelectModal:false,
           typeData:[]
       }
@@ -67,7 +67,8 @@ export default class Reg extends Component {
         },
         {
             'name':'采购量',
-            'type':'inputLabel'
+            'type':'inputLabel',
+            'label':'斤'
         },
         {
             'name':'性别',

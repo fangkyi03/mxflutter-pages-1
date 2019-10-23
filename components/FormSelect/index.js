@@ -21,17 +21,23 @@ export default class FormSelect extends Component {
     })
   }
 
+  hiddenModal = () => {
+    this.setState({
+        isShowModal:false
+    })
+  }
+
   renderModal = () => {
-    const {modalList} = this.state
+    const {modalList = []} = this.state
     return (
-        <div className={styles.modal}>
+        <div className={styles.modal} onClick={this.hiddenModal}>
             <div style={{maxHeight:apiTool.getSize(400),overflow:'scroll',borderRadius:apiTool.getSize(10)}}>
                 {modalList.map((e,i) => {
                     const isSelect = i == this.state.select 
                     return (
                         <div 
                             onClick={()=>this.onSelectDown(i)}
-                            style={{ color: isSelect ? '#2CC76C' : '#666666'}}
+                            style={{ color: isSelect ? '#2CC76C' : '#666666',fontSize:apiTool.getSize(34)}}
                             className={styles.modalListItem}
                         >
                             {e.name}
