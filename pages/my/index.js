@@ -16,7 +16,7 @@ export default class My extends Component {
   renderCardEdit = () => {
     return (
       <div className={styles.cardEdit}>
-
+        <img src={require('../../images/My/edit.png')} style={{width:apiTool.getSize(40),height:apiTool.getSize(40)}}/>
       </div>
     )
   }
@@ -63,6 +63,7 @@ export default class My extends Component {
         <div style={{ color:'#323333',fontSize:apiTool.getSize(32),fontWeight:'bold',marginTop:apiTool.getSize(20)}}>江北萌特优馆</div>
         {this.renderCardIconGroup()}
         {this.renderCardFoot()}
+        {this.renderCardEdit()}
       </div>
     )
   }
