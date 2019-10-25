@@ -5,6 +5,7 @@ import FormCode from '../FormCode'
 import FormSelect from '../FormSelect'
 import FormInputLabel from '../FormInputLabel'
 import FormArea from '../FormArea'
+import FormVerificationCode from '../FormVerificationCode'
 
 export default class FormView extends Component {
 
@@ -75,6 +76,10 @@ export default class FormView extends Component {
     return <FormArea data={item}/>
   }
 
+  renderVerificationCode = (item) => {
+    return <FormVerificationCode data={item} />
+  }
+
   renderFormView = (item) => {
     switch (item.type) {
       case 'input':
@@ -89,15 +94,17 @@ export default class FormView extends Component {
         return this.renderInputLabel(item)
       case 'area':
         return this.renderArea(item)
+      case 'verificationCode':
+        return this.renderVerificationCode(item)
       default:
         return this.renderInput(item)
     }
   }
 
   render() {
-    const {data} = this.props
+    const { data, style} = this.props
     return (
-      <div className={styles.formCard}>
+      <div className={styles.formCard} style={style}>
         {data.map((e)=>{
             return this.renderLabel(e)(this.renderFormView(e))
         })}

@@ -225,6 +225,7 @@ const createTemp = function (data) {
 
 // 更新标题
 const updateTitle = function (title) {
+    // document.querySelectorAll('title')[0].childNodes[0].data = '1'
     document.title = title
 }
 
