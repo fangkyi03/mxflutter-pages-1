@@ -31,6 +31,11 @@ if (typeof require !== 'undefined') {
   require.extensions['.css'] = file => { }
 }
 
+const routerObj = {}
+getPageFile.forEach((e) => {
+  routerObj['/' + e] = { page: '/' + e }
+})
+
 module.exports = withPlugins([
   [withBundleAnalyzer, {
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
@@ -60,7 +65,7 @@ module.exports = withPlugins([
     imagesFolder: 'images',
     imagesName: '[name]-[hash].[ext]',
     handleImages: ['jpeg', 'png', 'svg', 'webp', 'gif'],
-    optimizeImages: true,
+    optimizeImages: false,
     optimizeImagesInDev: false,
     mozjpeg: {
       quality: 50,
@@ -96,29 +101,30 @@ module.exports = withPlugins([
       cssModules: true
     }
   }],
-  [withOffline, {
-
-  }]
+  // [withOffline]
   // [withPreact,{}],
 ], {
   exportPathMap: function () {
-    const obj = {}
-    getPageFile.forEach((e) => {
-      obj['/' + e] = { page: '/' + e }
-    })
-    return obj;
+    return routerObj;
   },
   webpack(config, options) {
-    config.output = { ...config.output, globalObject: 'this', }
-    config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
-    config.plugins.push(new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/))
-    config.plugins.push(new CleanWebpackPlugin(['out', '.next']))
-    config.plugins.push(new CompressionPlugin({
-      test: /\.js(\?.*)?$/i,
-      algorithm: 'gzip',
-      threshold: 8192,
-      compressionOptions: { level: 9 },
-    }))
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        __DEV__: true
+      })
+    )
+    if (config.mode !== 'development') {
+      config.output = { ...config.output, globalObject: 'this', }
+      // config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
+      config.plugins.push(new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/))
+      config.plugins.push(new CleanWebpackPlugin(['out', '.next']))
+      config.plugins.push(new CompressionPlugin({
+        test: /\.js(\?.*)?$/i,
+        algorithm: 'gzip',
+        threshold: 8192,
+        compressionOptions: { level: 9 },
+      }))
+    }
     return config
   },
 })

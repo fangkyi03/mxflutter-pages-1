@@ -1,5 +1,5 @@
 // require('next-inferno/alias')()
-const fastify = require('fastify')({ logger: { level: 'error' } })
+const fastify = require('fastify')({ logger: { level: 'error' }, pluginTimeout: -1 })
 const Next = require('next')
 const port = parseInt(process.env.PORT, 10) || 3014
 const dev = process.env.NODE_ENV !== 'production'
@@ -8,7 +8,7 @@ const getPageFile = require('./utils/getPageFile')
 const devProxy = {
   '/api': {
     // target:'http://api.ztesa.com.cn:7041',
-    target: "http://192.167.5.212:7041",
+    target: "http://nongqibang.com:7041",
     // target: "http://192.167.5.113:3000",
     pathRewrite: { '^/api': '' },
     changeOrigin: true,

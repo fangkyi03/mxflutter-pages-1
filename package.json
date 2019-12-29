@@ -17,6 +17,7 @@
     "antd-mobile": "git+https://github.com/fangkyi03/ant-design-mobile-ssr.git",
     "autoprefixer": "^9.6.1",
     "babel-plugin-import": "^1.7.0",
+    "braft-editor": "^2.3.8",
     "clean-webpack-plugin": "^0.1.19",
     "compression-webpack-plugin": "^3.0.0",
     "dva": "^2.3.0",
@@ -69,5 +70,12 @@
     "next-optimized-images": "^2.5.0",
     "null-loader": "^3.0.0",
     "webpack-ant-icon-loader": "^1.0.5"
-  }
+  },
+  "browsers": [
+    "> 0%",
+    "Android 2.3",
+    "iOS 3.2",
+    "Safari 3.1",
+    "IE 10"
+  ]
 }

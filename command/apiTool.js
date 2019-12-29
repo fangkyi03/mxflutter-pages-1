@@ -1,8 +1,14 @@
 import Router from 'next/router'
+import cookie from "react-cookies";
 
 // 发送接口请求
 export const send = function send(thz, payload) {
     thz.props.dispatch({ type: 'fetch/send', payload })
+}
+
+// 获取model数据
+export const getValue = function getValue(thz, modelName) {
+    return thz.props.dispatch({ type: `${modelName}/getValue`, payload: { modelName } })
 }
 
 // 对指定的model进行赋值
@@ -27,36 +33,15 @@ export const getSharePath = function (thz) {
 
 // 获取路由参数
 export const getRouterParams = function (thz) {
-    const { scene } = thz.props.routerParams
-    if (scene) {
-        return tranRouterParamObj(decodeURIComponent(scene))
-    } else {
-        return thz.props.routerParams
-    }
+    return thz.props.routerParams
 }
 
 // 获取vw尺寸
 export const getSize = function (size) {
-    return size / 7.5 + 'vw'
+    return size / 19.2 + 'vw'
 }
 
-// 判断是否是小程序
-export const getIsWxClient = function ({ success, fail }) {
-    let ua = navigator.userAgent.toLocaleLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-        wx.miniProgram.getEnv((res) => {
-            if (res.miniprogram) {
-                success && success()
-            } else {
-                fail && fail()
-            }
-        })
-    } else {
-        fail && fail()
-    }
-}
-
-// 构造路由跳转
+// 格式化路由参数
 export const createRouterParams = function (params = {}) {
     console.log('输出结果', params);
     let text = ''
@@ -66,90 +51,102 @@ export const createRouterParams = function (params = {}) {
     return text;
 }
 
-// 跳转页面
-export const jumpRouter = function (routerName, routerParams) {
-    const token = localStorage.getItem('userIdNew')
-    Router.push('/' + routerName + '?' + createRouterParams(routerParams))
-    // getIsWxClient({
-    //     success: () => {
-    //         wx.miniProgram.navigateTo({ url: `../../pages/otherView/index?viewName=${routerName}&` + createRouterParams(routerParams) + '&token=' + token })
-    //     },
-    //     fail: () => {
-    //         Router.push('/' + routerName + '?' + createRouterParams(routerParams))
-    //     }
-    // })
-}
-
-// 跳转小程序原生页面
-export const jumpNativeRouter = function (routerName, routerParams) {
-    const token = localStorage.getItem('userIdNew')
-    getIsWxClient({
-        success: () => {
-            wx.miniProgram.navigateTo({ url: `../../pages/${routerName}/index?` + createRouterParams(routerParams) + '&token=' + token })
-        },
-        fail: () => {
-            Router.push('/' + routerName + '?' + createRouterParams(routerParams))
-        }
-    })
-}
-
-// 跳转到登录页面
-export const jumpLogin = function () {
-    getIsWxClient({
-        success: () => {
-            wx.miniProgram.navigateTo({ url: `../../pages/login/index` })
-        },
-        fail: () => {
-            Router.push('/login')
-        }
-    })
-}
-
-// 跳转到首页
-export const jumpHome = function () {
-    getIsWxClient({
-        success: () => {
-            wx.miniProgram.reLaunch({ url: `../../pages/otherView/index?viewName=commonIndex` })
-        },
-        fail: () => {
-            Router.push('/commonIndex')
-        }
-    })
-}
-
-// 跳转到首页
-export const jumpGuanHome = function (pavId) {
-    getIsWxClient({
-        success: () => {
-            wx.miniProgram.reLaunch({ url: `../../pages/otherView/index?viewName=index&pavId=${pavId ? pavId : ''}` })
-        },
-        fail: () => {
-            Router.push('/index')
-        }
-    })
-}
-
-
-// 给webview发送消息
-export const postMessage = function (params) {
-    getIsWxClient({
-        success: () => {
-            wx.miniProgram.postMessage({ data: params })
-        },
-        fail: () => {
-        }
-    })
+// 路由跳转
+export const jumpRouter = function (router, routerParams) {
+    // 路由首字母转为小写
+    const routerText = router.replace('/', '').trim()
+    router = routerText[0].toLowerCase() + routerText.slice(1);
+    Router.push('/' + router + '?' + createRouterParams(routerParams))
 }
 
 // 返回路由
 export const backRouter = function () {
-    getIsWxClient({
-        success: () => {
-            wx.miniProgram.navigateBack()
-        },
-        fail: () => {
+    Router.back()
+}
+
+// 控制弹出层modal是否显示
+export const toggleModal = function (thz, modelName, isShow = true, params) {
+    thz.props.dispatch({
+        type: `${modelName}/setValue`, payload: {
+            isShowModal: isShow,
+            isEdit: false,
+            ...params
         }
     })
+}
+
+// 打开编辑模式
+export const openEditModal = function (thz, modelName, isEdit = true, params) {
+    thz.props.dispatch({
+        type: `${modelName}/setValue`, payload: {
+            isShowModal: true,
+            isEdit,
+            ...params
+        }
+    })
+}
+
+// 清空对应表单model数据
+export const clearForm = function (thz, modelName) {
+    thz.props.dispatch({ type: 'form/clearForm', payload: { modelName } })
+}
+
+// 设置表单隐藏
+export const setFormNotDisplay = function (thz, modelName, notDisplay, isShow = false) {
+    thz.props.dispatch({
+        type: 'form/setFormNotDisplay', payload: {
+            modelName,
+            notDisplay,
+            isShow
+        }
+    })
+}
+
+// 设置当前表单只显示部分
+export const setFormOnlyDisplay = function (thz, modelName, display = [], isShow = true) {
+    console.log('表单输出', modelName, display)
+    thz.props.dispatch({
+        type: 'form/setFormOnlyDisplay', payload: {
+            modelName,
+            display,
+            isShow
+        }
+    })
+}
+
+// 设置表单数据
+export const setFormValue = function (thz, modelName, data) {
+    thz.props.dispatch({
+        type: 'form/setFormValue', payload: {
+            modelName,
+            dataSource: data
+        }
+    })
+}
+
+// 返回表单数据
+export const getFormValue = function (thz, modelName, key) {
+    return thz.props.dispatch({
+        type: 'form/getFormValue', payload: {
+            modelName,
+            key
+        }
+    })
+}
+
+// 提交表单
+export const sumbitForm = function (thz, modelName, callBack) {
+    thz.props.dispatch({ type: 'form/sumbitForm', payload: { modelName, callBack } })
+}
+
+// 重置表单
+export const resetForm = function (thz, modelName) {
+    thz.props.dispatch({ type: 'form/resetForm', payload: { modelName } })
+}
+
+// 获取路由参数
+export const getRouter = function (thz) {
+    return thz.props.router
 }
 
 /**
@@ -168,80 +165,116 @@ const createListPage = function createListPage(params = {}, current = 1, size = 
     }
 }
 
-// 一开始没有延迟的防抖
-const debounce = (func, wait = 500, immediate = true) => {
-    let timer, context, args;
-
-    // 延迟执行函数
-    const later = () =>
-        setTimeout(() => {
-            timer = null;
-            if (!immediate) {
-                func.apply(context, args);
-                context = args = null;
-            }
-        }, wait);
-
-
-    // 这里返回的函数是每次实际调用的函数
-    return function (...params) {
-        // 如果没有创建延迟执行函数（later），就创建一个
-        if (!timer) {
-            timer = later();
-            if (immediate) {
-                func.apply(this, params);
-            } else {
-                context = this;
-                args = params;
-            }
-        } else {
-            clearTimeout(timer);
-            timer = later();
-        }
-    };
-}
-
-// 转换短文本
-export const getDuanText = (text, len = 10) => {
-    return text.length > len ? text.slice(0, len) + '...' : text;
-}
-
-// 跳转到tab
-export const jumpTab = function jumpTab(name) {
-    getIsWxClient({
-        success: () => {
-            wx.miniProgram.switchTab({ url: `/pages/${name}/index` })
-        },
-        fail: () => {
-            Router.replace('/' + name)
-        }
-    })
-}
-
-// 创建临时数据缓存
-const createTemp = function (data) {
-    postMessage({ type: 'temp', data })
-}
-
-// 更新标题
-const updateTitle = function (title) {
-    // document.querySelectorAll('title')[0].childNodes[0].data = '1'
-    document.title = title
-}
-
-const injectUnount = function (target) {
-    // 改装componentWillUnmount，销毁的时候记录一下
-    let next = target.prototype.componentWillUnmount
-    target.prototype.componentWillUnmount = function () {
-        if (next) next.call(this, ...arguments);
-        this.unmount = true
+// 判断当前环境 测试环境 本地开发环境 线上环境
+export const isDev = function () {
+    const hostname = window.location.hostname
+    const isIp = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/.test(hostname)
+    if (isIp) {
+        return hostname
+    } else {
+        return '*.' + hostname
     }
-    // 对setState的改装，setState查看目前是否已经销毁
-    let setState = target.prototype.setState
-    target.prototype.setState = function () {
-        if (this.unmount) return;
-        setState.call(this, ...arguments)
+}
+
+// 获取图片信息
+export const getImageData = function (data) {
+    const uid = Math.random() * 1000
+    const name = data.split('/').slice(-1)[0]
+    return {
+        uid,
+        name,
+        url: data
     }
+}
+
+// 创建图片的结构
+export const createImageStructure = function (data) {
+    return {
+        uid: data.uid,
+        name: data.name,
+        url: data.url,
+        response: {
+            uid: data.uid,
+            name: data.name,
+            status: "done",
+            url: data.url,
+        }
+    }
+}
+
+// 禁用表单所有组件
+export const disableForm = function (thz, modelName, disable = [], isDisable = true) {
+    thz.props.dispatch({ type: 'form/disableForm', payload: { modelName, disable, isDisable } })
+}
+
+// 创建表单图片格式
+export const createImage = function (img) {
+    const imgSplit = img.split(',')
+    if (imgSplit.length > 1) {
+        return imgSplit.map((e) => {
+            return createImageStructure(getImageData(e))
+        })
+    } else {
+        return [
+            createImageStructure(getImageData(img))
+        ]
+    }
+}
+
+// 跳转登录
+export const jumpLogin = function () {
+    jumpRouter('login')
+}
+
+// 设置表单type
+export const setFormType = function (thz, modelName, typeData) {
+    thz.props.dispatch({ type: 'form/setFormType', payload: { modelName, typeData } })
+}
+
+export const postRequest = (url, params = {}) =>
+    new Promise(resolve => {
+        fetch(url, {
+            credentials: "include",
+            method: "POST",
+            body: JSON.stringify(params),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `${cookie.load("tokenType")} ${cookie.load("token")}`,
+                "X-Application-name": "app"
+            }
+        })
+            .then(e => e.json())
+            .then(e => {
+                resolve(e);
+            })
+            .catch(e => {
+                resolve(e);
+            });
+    });
+
+export const getRequest = (url) =>
+    new Promise(resolve => {
+        fetch(url, {
+            credentials: "include",
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `${cookie.load("tokenType")} ${cookie.load("token")}`,
+                "X-Application-name": "app"
+            }
+        })
+            .then(e => e.json())
+            .then(e => {
+                resolve(e);
+            })
+            .catch(e => {
+                resolve(e);
+            });
+    });
+
+// 获取表单类型数据
+export const getFormType = (thz, name) => {
+    return thz.props.dispatch({ type: 'form/getFormType', payload: { modelName: name } })
 }
 
 // 将字符串路由转换成对象
@@ -277,24 +310,28 @@ export default {
     clearList,
     getRouterParams,
     getSize,
+    toggleModal,
+    openEditModal,
+    clearForm,
+    setFormNotDisplay,
+    setFormValue,
+    sumbitForm,
+    resetForm,
+    getFormValue,
     jumpRouter,
-    getIsWxClient,
-    postMessage,
-    jumpLogin,
-    jumpNativeRouter,
-    backRouter,
+    isDev,
+    getRouter,
     createListData,
     createListPage,
-    debounce,
-    getDuanText,
-    jumpTab,
-    getSharePath,
-    createTemp,
-    updateTitle,
-    jumpHome,
-    jumpGuanHome,
-    injectUnount,
-    tranRouterParamObj,
-    isAndroid,
-    isIos
+    createImage,
+    disableForm,
+    getValue,
+    jumpLogin,
+    createRouterParams,
+    setFormType,
+    postRequest,
+    getRequest,
+    backRouter,
+    setFormOnlyDisplay,
+    getFormType
 }

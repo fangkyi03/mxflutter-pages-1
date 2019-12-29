@@ -1,11 +1,50 @@
 :global{
     html,body {
         height: 100%;
+        padding: 0px;
         margin:0px;
         font-size: 10px;
+        -webkit-text-size-adjust:none!important;
+    }
+
+    #button {
+        cursor:pointer;
+    }
+
+    div[type='button'] {
+        cursor:pointer;
     }
     #__next {
         height: 100%;
+        padding: 0px;
+        margin:0px;
+    }
+    .ant-form-item-label {
+        height: 33px!important;
+        display: flex!important;
+        align-items: center!important;
+        justify-content: flex-end!important;
+    }
+    .ant-form-explain {
+        height: 33px!important;
+        line-height: 33px!important;
+        margin-bottom: 2px!important;
+    }
+    .ant-form-item {
+        margin-bottom: 0px!important;
+    }
+    .ant-modal-wrap  {
+        display: flex!important;
+        align-items: center!important;
+        justify-content: center!important;
+    }
+    .ant-modal {
+        top: auto!important;
+        padding-bottom: 0px!important;
+    }
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+        outline: none;
     }
     input {
         outline: 0px;

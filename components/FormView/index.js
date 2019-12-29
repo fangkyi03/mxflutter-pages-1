@@ -1,114 +1,63 @@
 import React, { Component } from 'react'
-import styles from './index.less'
-import apiTool from '../../command/apiTool'
-import FormCode from '../FormCode'
-import FormSelect from '../FormSelect'
-import FormInputLabel from '../FormInputLabel'
-import FormArea from '../FormArea'
-import FormVerificationCode from '../FormVerificationCode'
+import FormContainer from '../FormContainer';
+import FormImageUpload from '../FormImageUpload'
+import FormRich from '../FormContainer/FormRich';
+import FormMap from '../FormMap';
+import FormLabel from '../FormContainer/FormLabel';
+import FormTreeSelect from '../FormContainer/FormTreeSelect';
 
 export default class FormView extends Component {
 
-  renderSelect = (item) => {
-    return <FormSelect data={item} />
+  constructor(props) {
+    super(props);
+    this.form = new FormContainer({
+      formData: props.data,
+      colSize: {
+        labelCol: 5,
+        wrappCol: 18,
+        cols: 24
+      },
+      ...props
+    })
+    this.form.regComponet('imageUpload',FormImageUpload)
+    this.form.regComponet('rich',FormRich)
+    this.form.regComponet('label',FormLabel)
+    this.form.regComponet('treeSelect',FormTreeSelect)
+    this.form.regComponet('mapView',FormMap)
+    this.form.regComponet('inputSelect', (item) => {
+      return {
+        ...item,
+        type: 'itemGroup',
+        keys: [
+          {
+            type: 'input',
+            cols: 10,
+            ...item.keys[0]
+          },
+          {
+            type: 'select',
+            cols: 14,
+            ...item.keys[1]
+          }
+        ],
+        rules: [
+          {
+            required: item.required
+          }
+        ]
+      }
+    })
   }
 
-  renderInput = (item) => {
-    return (
-      <input placeholder={`请输入${item.name}`} />
-    )
+  componentWillUnmount() {
+    setTimeout(()=>{
+      this.form.destory()
+    })
   }
-
-  // 是否有强制
-  isHaveRequired = (item) => {
-    if (item.rule) {
-      return item.rule.some((e)=>e.required) 
-    }else {
-      return false
-    }
-  }
-
-  renderLabel = (item) => {
-    return (Component) => {
-      return (
-        <div className={styles.label}>
-          <div style={{display:'flex',alignItems:'center',minWidth:apiTool.getSize(150)}}>
-            <div style={{ fontSize: apiTool.getSize(28), color: '#666666' }}>{item.name}</div>
-            {this.isHaveRequired(item) && <div style={{ color:'#FF3E18',fontSize:apiTool.getSize(28)}}>*</div>}
-          </div>
-          <div style={{ display: 'flex', flex: 1 }}>
-            {Component}
-          </div>
-        </div>
-      )
-    }
-  }
-
-  renderCheckBox = (item) => {
-    return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        {
-          item.typeData.map((e) => {
-            return (
-              <div style={{ display: "flex", alignItems: 'center', marginRight: apiTool.getSize(150) }}>
-                <img
-                  src={require('../../images/Class//selectCheck.png')}
-                  style={{ width: apiTool.getSize(32), height: apiTool.getSize(32) }}
-                />
-                <div style={{ marginLeft: apiTool.getSize(20), fontSize: apiTool.getSize(26), color: '#333333' }}>{e.name}</div>
-              </div>
-            )
-          })
-        }
-      </div>
-    )
-  }
-
-  renderCode = (item) => {
-    return <FormCode data={item}/>
-  }
-
-  renderInputLabel = (item) =>  {
-    return <FormInputLabel data={item} />
-  }
-
-  renderArea = (item) => {
-    return <FormArea data={item}/>
-  }
-
-  renderVerificationCode = (item) => {
-    return <FormVerificationCode data={item} />
-  }
-
-  renderFormView = (item) => {
-    switch (item.type) {
-      case 'input':
-        return this.renderInput(item)
-      case 'code':
-        return this.renderCode(item)
-      case 'select':
-        return this.renderSelect(item)
-      case 'checkBox':
-        return this.renderCheckBox(item)
-      case 'inputLabel':
-        return this.renderInputLabel(item)
-      case 'area':
-        return this.renderArea(item)
-      case 'verificationCode':
-        return this.renderVerificationCode(item)
-      default:
-        return this.renderInput(item)
-    }
-  }
-
+  
   render() {
-    const { data, style} = this.props
-    return (
-      <div className={styles.formCard} style={style}>
-        {data.map((e)=>{
-            return this.renderLabel(e)(this.renderFormView(e))
-        })}
-      </div>
+    return this.form.getRow(
+      this.form.getChildrenMap()
     )
   }
 }
