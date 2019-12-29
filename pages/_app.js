@@ -7,7 +7,6 @@ import { Container } from 'next/app'
 import React from 'react'
 import './app.less'
 import Header from 'next/head'
-import BottomBar from '../components/BottomBar'
 
 class AppComponent extends React.Component {
 
@@ -43,48 +42,10 @@ class AppComponent extends React.Component {
             return router.query;
         }
     };
-
-    renderTabBar = () => {
-        const { Component} = this.props
-        const params = this.getPageParams()
-        const path = this.getPath()
-        return (
-            <div style={{display:'flex',flexDirection:'column-reverse',flex:1,height:'100vh'}}>
-                <BottomBar path={path} />
-                <Component {...params}/>
-            </div>
-        )
-    }
-    
-    getRouterType = () => {
-        const path = this.getPath()
-        if (['/','/index','/class','/my'].indexOf(path) !== -1) {
-            return 'tabBar'
-        }else {
-            return 'normal'
-        }
-    }
-
-    renderOther = () => {
-        const {Component} = this.props
-        const params = this.getPageParams()
-        return (
-            <Component {...params} />
-        )
-    }
-
-    renderView = () => {
-        const routerType = this.getRouterType()
-        switch (routerType) {
-            case 'tabBar':
-                return this.renderTabBar()
-            default:
-                return this.renderOther()
-        }
-    }
     
     render() {
-     
+        const { Component } = this.props
+        const params = this.getPageParams()
         return (
             <Container>
                 <Header>
@@ -97,7 +58,7 @@ class AppComponent extends React.Component {
                     <meta name="x5-page-mode" content="app" />
                     <meta name="360-fullscreen" content="true" />
                 </Header>
-                {this.renderView()}
+                <Component {...params} />
             </Container>
         )
     }
