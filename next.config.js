@@ -106,7 +106,7 @@ module.exports = withPlugins([
   // [withOffline]
   // [withPreact,{}],
 ], {
-  // assetPrefix:isProd ? 'https://fangkyi03.github.io/mxflutter-pages/out' : '',
+    assetPrefix: isProd ? 'https://fangkyi03.github.io/mxflutter-pages/' : '',
   exportPathMap: function () {
     return routerObj;
   },
