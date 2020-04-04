@@ -36,6 +36,8 @@ getPageFile.forEach((e) => {
   routerObj['/' + e] = { page: '/' + e }
 })
 
+const isProd = process.env.NODE_ENV === 'production'
+
 module.exports = withPlugins([
   [withBundleAnalyzer, {
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
@@ -104,6 +106,7 @@ module.exports = withPlugins([
   // [withOffline]
   // [withPreact,{}],
 ], {
+  assetPrefix:isProd ? 'https://fangkyi03.github.io/mxflutter-pages/out' : '',
   exportPathMap: function () {
     return routerObj;
   },
