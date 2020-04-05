@@ -35,24 +35,24 @@ module.exports = (nextConfig = {}) => {
                     use: 'null-loader',
                 })
 
-                // const antdStyles = /antd\/.*?\/style.*?/
-                // const antdOrigExternals = [...config.externals]
-                // config.externals = [
-                //     (context, request, callback) => {
-                //         if (request.match(antdStyles)) return callback()
-                //         if (typeof antdOrigExternals[0] === 'function') {
-                //             antdOrigExternals[0](context, request, callback)
-                //         } else {
-                //             callback()
-                //         }
-                //     },
-                //     ...(typeof antdOrigExternals[0] === 'function' ? [] : antdOrigExternals),
-                // ]
+                const antdStyles = /antd\/.*?\/style.*?/
+                const antdOrigExternals = [...config.externals]
+                config.externals = [
+                    (context, request, callback) => {
+                        if (request.match(antdStyles)) return callback()
+                        if (typeof antdOrigExternals[0] === 'function') {
+                            antdOrigExternals[0](context, request, callback)
+                        } else {
+                            callback()
+                        }
+                    },
+                    ...(typeof antdOrigExternals[0] === 'function' ? [] : antdOrigExternals),
+                ]
 
-                // config.module.rules.unshift({
-                //     test: antdStyles,
-                //     use: 'null-loader',
-                // })
+                config.module.rules.unshift({
+                    test: antdStyles,
+                    use: 'null-loader',
+                })
             }
             options.defaultLoaders.less = cssLoaderConfig(config, {
                 extensions: ['less'],

@@ -7,6 +7,7 @@ import { Container } from 'next/app'
 import React from 'react'
 import './app.less'
 import Header from 'next/head'
+import Main from '../components/Main'
 
 class AppComponent extends React.Component {
 
@@ -58,7 +59,9 @@ class AppComponent extends React.Component {
                     <meta name="x5-page-mode" content="app" />
                     <meta name="360-fullscreen" content="true" />
                 </Header>
-                <Component {...params} />
+                <Main>
+                    <Component {...params} />
+                </Main>
             </Container>
         )
     }

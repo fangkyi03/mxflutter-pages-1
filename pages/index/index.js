@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import {Button} from 'antd'
+import {Button, Input} from 'antd'
 
 export default class Index extends Component {
     render() {
         return (
             <div>
-                <Button>测试</Button>
+                <Button type={'primary'}>13313</Button>
+                <Input></Input>
             </div>
         )
     }
